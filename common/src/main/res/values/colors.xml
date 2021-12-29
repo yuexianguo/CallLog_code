@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="commonColorBase">#1a1a1a</color>
+    <color name="commonColorBaseDark">#121111</color>
+    <color name="commonColorBlack">#000000</color>
+    <color name="commonColorWhite">#FFFFFF</color>
+    <color name="commonColorRed">#FF0000</color>
+    <color name="commonColorGreen">#008000</color>
+    <color name="commonColorLightGreen">#34CA28</color>
+    <color name="commonColorBlue">#0000FF</color>
+    <color name="commonColorSkyBlue">#00BFFF</color>
+    <color name="commonColorYellow">#FFFF00</color>
+    <color name="commonColorBrown">#A52A2A</color>
+    <color name="commonColorHotPink">#FF69B4</color>
+    <color name="commonColorGray">#999999</color>
+
+    <color name="commonColorGrayDark">#666667</color>
+    <color name="commonTextColor">@color/commonColorWhite</color>
+    <color name="commonOutside_bg">@color/commonColorGray</color>
+    <color name="commonLight2">#ffd966</color>
+    <color name="commonLight3">#e69137</color>
+    <color name="commonLight4">#9ec4f8</color>
+    <color name="commonLight6">#dddddd</color>
+    <color name="commonPreset_bg">#DDDDDD</color>
+    <color name="commonPreset_press_bg">#94BCF2</color>
+    <color name="commonOffline_background">#8006153B</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorGray">#666667</color>
+    <color name="colorGrayDark">#666667</color>
+</resources>

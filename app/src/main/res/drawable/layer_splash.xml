@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <gradient
+                android:angle="-90"
+                android:startColor="#221d54"
+                android:endColor="#221d54"
+                android:type="linear" />
+
+        </shape>
+    </item>
+
+    <item
+        android:width="519px"
+        android:height="82px"
+        android:gravity="center">
+        <bitmap android:src="@drawable/common_ic_wac_logo" />
+    </item>
+
+<!--    <item-->
+<!--        android:width="231px"-->
+<!--        android:height="27px"-->
+<!--        android:gravity="bottom|center_horizontal"-->
+<!--        android:bottom="80dp">-->
+<!--        <bitmap android:src="@drawable/powered_by_wac" />-->
+<!--    </item>-->
+
+</layer-list>

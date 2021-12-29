@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:paddingRight="@dimen/fragment_padding"
+    android:paddingLeft="@dimen/fragment_padding"
+    >
+
+    <com.phone.base.common.view.ClearEditView
+        android:id="@+id/dialog_edit_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:inputType="text"
+        android:paddingLeft="@dimen/x5"
+        android:imeOptions="actionDone"
+        android:layout_toLeftOf="@+id/iv_dialog_edit_name_dismiss"
+        android:drawablePadding="@dimen/x10"
+        android:drawableRight="@drawable/common_ic_cancel"
+        android:hint="@string/common_name"/>
+
+</LinearLayout>

@@ -1,0 +1,84 @@
+V1.0.1rc22
+    Date	: 2021-04-02
+	Branch	: master/
+	Review	: Andy.Guo, Derik.Wu
+	Compatibility:
+		- IOTM:  >=01.01.0024
+		- SCM： >=01.11beta22
+		- DCM：>3.08
+
+	Change list:
+		Based On v1.0.1rc21
+		Add feature:
+			1. Add DMX module.
+			2. Add the display and update of the status of the Brain network on the home page.
+			3. Add the setting of Location.
+			4. Display the name of the Input binding group.
+		Hotfix:
+			1. Fix the problem that AP direct connection cannot get data.
+			2. After entering "+" on the homepage, return to the homepage to trigger loading data.
+			3. After the IOTM ip address is modified by routing, APP does not work.
+		Optimization:
+			1. In all pop-up boxes with the same name, add a button that can clear the currently entered name with one key.
+			2. Unify the positions of the "save" and "delete" buttons of fixture, group and automation.
+	Test:
+		2021-03-29 ~ 2021-04-02 test by Reviewers
+
+	Known issues：
+		1. When the “Find Me” function of the lamp is triggered by the cloud, the response sequence cannot be guaranteed, and the new firmware method will support it.
+
+V1.0.1rc21
+    Date	: 2021-03-26
+	Branch	: master/
+	Review	: Andy.Guo, Derik.Wu
+	Compatibility:
+		- IOTM: 01.01.0023
+		- SCM：01.11
+		- DCM：3.08
+
+	Change list:
+		Based On v1.0.1rc20
+		Add feature:
+			1. Add App cloud control and automatic conversion of local control.
+			2. Add a prompt when waiting for the device to connect to the cloud.
+			3. Add support for cloud reset.
+		Hotfix:
+			1. Fix the token expiration problem of AWS account login, add token validity check during automatic login, and clear expiration information.
+			2. Fix the bug of MQTT crash and repeated messages received.
+		Optimization:
+			1. Combine SCM and IOTM pages into one CPU page.
+			2. Modify the "+" sign on the homepage to configure and set up the network, create a new group, and create a new Automation entry.
+			3. To each mqtt request, add a parameter that can set the timeout period.
+	Test:
+		2021-03-22 ~ 2021-03-26 test by Reviewers
+
+	Known issues：
+		1. After entering "+" on the homepage, return to the homepage to trigger loading data.
+		2. When the “Find Me” function of the lamp is triggered by the cloud, the response sequence cannot be guaranteed, and the new firmware method will support it.
+
+v1.0.1rc20
+    Date	: 2021-03-22
+	Branch	: master/
+	Review	: Andy.Guo, Derik.Wu
+	Compatibility:
+		- DCM：3.08
+		- SCM：01.11
+        - IOTM：1.00.0020
+	Change list:
+		Based On v1.0.1rc19
+		Add feature:
+			1. Initialize app and CPU to establish MQTT connection to realize cloud communication.
+			2. Achieve fixture-related cloud communication.
+			3. Achieve group-related cloud communication.
+			4. Achieve automation-related cloud communication.
+			5. Achieve schedule-related cloud communication.
+			6. Achieve input-related cloud communication.
+		Hotfix:
+			1.Fix favorite function update of automation.
+			2.Fix rename of a device.
+			3.Fixed the Automation save logic when state was null.
+			4.Fixed the bug that app info did not shown when installed new version in phone.
+		Optimization:
+			1.Modify the saving response data logic of modify group and automation.
+	test:
+		2021-03-11 ~ 2021-03-18 test by Reviewers

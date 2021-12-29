@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.phone.base.common.view.RightDrawerView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_right_drawer"
+    android:layout_width="@dimen/x310"
+    android:layout_height="match_parent"
+    android:layout_gravity="end"
+    android:background="@color/commonColorGrayDark"
+    android:gravity="center_vertical"
+    android:orientation="vertical">
+
+</com.phone.base.common.view.RightDrawerView>

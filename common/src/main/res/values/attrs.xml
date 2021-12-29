@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="RangeChooseBar">
+        <attr name="rangeBarBackground" format="color" />
+        <attr name="rangeBarChooseBackground" format="color" />
+        <attr name="rangeBarTextColor" format="color" />
+        <attr name="rangeBarTextSize" format="dimension" />
+        <attr name="rangeBarWidth" format="dimension" />
+        <attr name="rangeBarSlice" format="integer" />
+        <attr name="rangeBarStrokeWidth" format="integer" />
+        <attr name="rangeBarTitle" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="SettingItemView">
+        <attr name="settingType">
+            <enum name="textAndIndicator" value="0" />
+            <enum name="switchOnly" value="1" />
+            <enum name="textOnly" value="2" />
+        </attr>
+        <attr name="settingName" format="string|reference" />
+        <attr name="settingDesc" format="string|reference" />
+        <attr name="settingNameSize" format="dimension|reference" />
+        <attr name="settingDescSize" format="dimension|reference" />
+        <attr name="settingNameColor" format="color|reference" />
+        <attr name="settingDescColor" format="color|reference" />
+        <attr name="settingDividerEnable" format="boolean" />
+        <attr name="settingDividerColor" format="color|reference" />
+        <attr name="settingDividerWidth" format="dimension|reference" />
+        <attr name="settingDescMarginLeft" format="dimension|reference" />
+        <attr name="settingIndicatorDrawable" format="reference" />
+        <attr name="settingIndicatorDrawablePadding" format="reference" />
+        <attr name="settingDescPosition">
+            <enum name="right" value="0" />
+            <enum name="afterName" value="1" />
+        </attr>
+        <attr name="settingNameMarginLeft" format="dimension|reference" />
+        <attr name="settingIndicatorMarginRight" format="dimension|reference" />
+        <attr name="settingSwitchMarginRight" format="dimension|reference" />
+        <attr name="settingSwitchChecked" format="boolean" />
+        <attr name="settingDividerMarginRight" format="dimension|reference" />
+        <attr name="settingDividerMarginLeft" format="dimension|reference" />
+    </declare-styleable>
+
+</resources>

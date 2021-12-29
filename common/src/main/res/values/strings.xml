@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="common_network_error">Network error</string>
+    <string name="common_get_data_error">Get data error</string>
+    <string name="common_groups">Groups</string>
+    <string name="common_automations">Automations</string>
+    <string name="common_schedules">Schedules</string>
+    <string name="common_settings">Settings</string>
+    <string name="common_sign_out">Sign Out</string>
+    <string name="common_strut">STRUT</string>
+    <string name="common_cpu">CPU</string>
+    <string name="common_tip_sign_out">Are you sure you want to sign out?</string>
+    <string name="common_no_brain_msg_add_one_cpu">Your phone has not added any CPU.</string>
+    <string name="common_enable">Enable</string>
+    <string name="common_disable">Disable</string>
+    <string name="common_name">Name</string>
+    <string name="common_toast_name_long_limit">Name only can be 48 characters long at most.</string>
+    <string name="common_version">Version</string>
+    <string name="common_firmware_version">Firmware Version</string>
+    <string name="common_firmware_update">Firmware Update</string>
+    <string name="common_update">Update</string>
+    <string name="common_check">Check</string>
+    <string name="common_status">Status</string>
+    <string name="common_delete">Delete</string>
+    <string name="common_reset">Reset</string>
+    <string name="common_factory_reset">Factory Reset</string>
+    <string name="common_next">Next</string>
+    <string name="common_cancel">Cancel</string>
+    <string name="common_ok">OK</string>
+    <string name="common_background">Background</string>
+    <string name="common_pictures">Pictures</string>
+    <string name="common_save">Save</string>
+    <string name="common_see_more">See more</string>
+    <string name="common_finish">Finish</string>
+
+
+    <!--location start-->
+    <string name="common_your_place_tips">Tell us a little bit about where you’re installing our products.This will help us make the experience more taylored to you.</string>
+    <string name="common_home">Home</string>
+    <string name="common_cabin">Cabin</string>
+    <string name="common_building">Building</string>
+    <string name="common_hotel">Hotel</string>
+    <string name="common_restaurant">Restaurant</string>
+    <string name="common_custom">Custom</string>
+    <string name="common_custom_hint_msg">Enter Your Custom Value</string>
+    <string name="common_custom_alert_msg">Please Enter Your Custom Value.</string>
+    <string name="common_success">Success.</string>
+    <string name="common_failed">Failed.</string>
+    <string name="common_latest_version">Latest Version</string>
+    <!--location end-->
+
+    <!--permisson tip start-->
+    <string name="common_msg_enable_locate_service">Please enable the Locate Service in phone settings.</string>
+    <string name="common_location_rationale">In order to use the device discovery function, the phone location function needs to be turned on.</string>
+
+    <!--permisson tip end-->
+</resources>

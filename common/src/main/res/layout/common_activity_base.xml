@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/base_drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/commonColorBase">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:context="com.phone.base.common.BaseActivity">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar_base"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="@android:color/transparent"
+            app:elevation="0dp">
+
+            <ImageView
+                android:id="@+id/iv_base_logo"
+                android:layout_width="@dimen/x120"
+                android:layout_height="@dimen/x26"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/x30"
+                android:src="@drawable/common_ic_wac_logo" />
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar_base"
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                android:theme="@style/AppTheme.ActionBar">
+
+                <TextView
+                    android:id="@+id/tv_middle_title_base"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/x36" />
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <include
+            android:id="@+id/vg_tips_base"
+            layout="@layout/common_layout_base_tips"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/appbar_base"
+            android:layout_marginLeft="@dimen/x30"
+            android:layout_marginTop="@dimen/x10"
+            android:layout_marginRight="@dimen/x30"
+            android:layout_marginBottom="@dimen/x10"
+            android:visibility="gone" />
+
+        <ViewStub
+            android:id="@+id/vs_content_base"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/vg_tips_base" />
+
+        <ImageView
+            android:id="@+id/iv_base_favorites"
+            android:layout_width="@dimen/x120"
+            android:layout_height="@dimen/x120"
+            android:layout_alignParentBottom="true"
+            android:padding="@dimen/x26"
+            android:src="@drawable/common_ic_collect"
+            app:layout_goneMarginBottom="@dimen/x136" />
+
+        <ImageView
+            android:id="@+id/iv_base_settings"
+            android:layout_width="@dimen/x110"
+            android:layout_height="@dimen/x120"
+            android:layout_alignTop="@id/iv_base_favorites"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/x20"
+            android:paddingLeft="@dimen/x26"
+            android:paddingTop="@dimen/x30"
+            android:paddingRight="@dimen/x26"
+            android:src="@drawable/common_ic_main_menu" />
+    </RelativeLayout>
+
+    <include layout="@layout/common_layout_left_drawer" />
+
+    <include layout="@layout/common_layout_right_drawer" />
+</androidx.drawerlayout.widget.DrawerLayout>

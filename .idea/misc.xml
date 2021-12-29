@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1796875" />
+        <entry key="app/src/main/res/layout/adapter_item_home_device.xml" value="0.14895833333333333" />
+        <entry key="app/src/main/res/layout/fragment_device_types.xml" value="0.1757852077001013" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1796875" />
+        <entry key="app/src/main/res/layout/fragment_home_fixture_viewpager.xml" value="0.18541666666666667" />
+        <entry key="common/src/main/res/drawable/common_selector_btn_bg.xml" value="0.2359375" />
+        <entry key="common/src/main/res/drawable/common_selector_fan_status_wifi.xml" value="0.2234375" />
+        <entry key="common/src/main/res/drawable/common_selector_light_power_btn_bg.xml" value="0.2359375" />
+        <entry key="common/src/main/res/drawable/ic_add_start_group.xml" value="1.14375" />
+        <entry key="common/src/main/res/drawable/layer_list_light_seek_bar_disable.xml" value="0.17777777777777778" />
+        <entry key="common/src/main/res/drawable/layer_list_light_seek_bar_enable.xml" value="0.1175925925925926" />
+        <entry key="common/src/main/res/drawable/selector_light_seek_bar_thumb.xml" value="0.18796296296296297" />
+        <entry key="common/src/main/res/drawable/shape_light_seek_bar_thumb_disable.xml" value="0.18796296296296297" />
+        <entry key="common/src/main/res/drawable/shape_light_seek_bar_thumb_press.xml" value="0.18796296296296297" />
+        <entry key="common/src/main/res/drawable/shape_light_seek_bar_thumb_unpress.xml" value="0.1425925925925926" />
+        <entry key="common/src/main/res/layout/adapter_edit_item_with_select.xml" value="0.12135416666666667" />
+        <entry key="common/src/main/res/layout/common_adapter_edit_item_with_select.xml" value="0.10833333333333334" />
+        <entry key="confignetwork/src/main/res/layout/fragment_cloud_fail.xml" value="0.33" />
+        <entry key="confignetwork/src/main/res/layout/fragment_cloud_fail_mf.xml" value="0.3614583333333333" />
+        <entry key="confignetwork/src/main/res/layout/fragment_cloud_success.xml" value="0.3614583333333333" />
+        <entry key="confignetwork/src/main/res/layout/fragment_cloud_success_mf.xml" value="0.3614583333333333" />
+        <entry key="confignetwork/src/main/res/layout/fragment_config_net_start_mf.xml" value="0.1757852077001013" />
+        <entry key="confignetwork/src/main/res/layout/fragment_config_wifi_mf.xml" value="0.1757852077001013" />
+        <entry key="confignetwork/src/main/res/layout/fragment_cpu_cloud.xml" value="0.25" />
+        <entry key="confignetwork/src/main/res/layout/fragment_cpu_cloud_mf.xml" value="0.33" />
+        <entry key="confignetwork/src/main/res/layout/fragment_cpu_name.xml" value="0.25" />
+        <entry key="confignetwork/src/main/res/layout/fragment_cpu_name_mf.xml" value="0.25" />
+        <entry key="mffan/src/main/res/drawable/mf_color_away_mode.xml" value="0.2518518518518518" />
+        <entry key="mffan/src/main/res/drawable/mf_color_breeze.xml" value="0.2518518518518518" />
+        <entry key="mffan/src/main/res/drawable/mf_color_green_white_gray.xml" value="0.3435185185185185" />
+        <entry key="mffan/src/main/res/drawable/mf_color_sleep_timer.xml" value="0.2140625" />
+        <entry key="mffan/src/main/res/drawable/mf_color_winter_summer.xml" value="0.2518518518518518" />
+        <entry key="mffan/src/main/res/drawable/mf_selector_timer.xml" value="0.20833333333333334" />
+        <entry key="mffan/src/main/res/layout/activity_fans_main_mf.xml" value="0.18059777102330293" />
+        <entry key="mffan/src/main/res/layout/activity_mf_group.xml" value="0.21875" />
+        <entry key="mffan/src/main/res/layout/activity_mf_main_container.xml" value="0.22826086956521738" />
+        <entry key="mffan/src/main/res/layout/activity_mfsettings.xml" value="0.2703804347826087" />
+        <entry key="mffan/src/main/res/layout/adapter_edit_item_with_select_mf.xml" value="0.171875" />
+        <entry key="mffan/src/main/res/layout/adapter_fan_edit_item_with_select.xml" value="0.24895833333333334" />
+        <entry key="mffan/src/main/res/layout/fragment_add_start.xml" value="0.25" />
+        <entry key="mffan/src/main/res/layout/fragment_base_control_dialog_mf.xml" value="0.2" />
+        <entry key="mffan/src/main/res/layout/fragment_group_select_fan.xml" value="0.23641304347826086" />
+        <entry key="mffan/src/main/res/layout/fragment_mf_add_start.xml" value="0.28802083333333334" />
+        <entry key="mffan/src/main/res/layout/fragment_mf_group_info.xml" value="0.17447916666666666" />
+        <entry key="mffan/src/main/res/layout/fragment_mf_group_select_fan.xml" value="0.2713541666666667" />
+        <entry key="mffan/src/main/res/layout/fragment_mf_home.xml" value="0.13229166666666667" />
+        <entry key="mffan/src/main/res/layout/fragment_mf_home_devices.xml" value="0.12447916666666667" />
+        <entry key="mffan/src/main/res/layout/fragment_mf_home_groups.xml" value="0.12447916666666667" />
+        <entry key="mffan/src/main/res/layout/fragment_sleep_timer.xml" value="0.1890625" />
+        <entry key="mffan/src/main/res/layout/fragment_sleep_timer_mf.xml" value="0.21145833333333333" />
+        <entry key="mffan/src/main/res/layout/fragment_summer_winter_mf.xml" value="0.2703804347826087" />
+        <entry key="mffan/src/main/res/layout/layout_light_control_common_newer_mf.xml" value="0.1644021739130435" />
+        <entry key="mffan/src/main/res/layout/layout_mf_fan_control.xml" value="0.4570446735395189" />
+        <entry key="mffan/src/main/res/layout/mf_adapter_edit_item_with_select.xml" value="0.171875" />
+        <entry key="smartsocket/src/main/res/drawable/selector_smart_power_btn_bg.xml" value="0.1" />
+        <entry key="smartsocket/src/main/res/layout/activity_smart_home.xml" value="0.1796875" />
+        <entry key="smartsocket/src/main/res/layout/adapter_item_home_device.xml" value="0.14895833333333333" />
+        <entry key="smartsocket/src/main/res/layout/fragment_mf_home.xml" value="0.165625" />
+        <entry key="smartsocket/src/main/res/layout/fragment_mf_home_devices.xml" value="0.1796875" />
+        <entry key="smartsocket/src/main/res/layout/fragment_mf_home_groups.xml" value="0.1796875" />
+        <entry key="strut/src/main/res/drawable-anydpi/ic_add_start_group.xml" value="0.26614583333333336" />
+        <entry key="strut/src/main/res/drawable/auto_motor_preset_select_bg.xml" value="0.1712962962962963" />
+        <entry key="strut/src/main/res/drawable/ctrldialog_shape_bg.xml" value="0.287962962962963" />
+<<<<<<< HEAD
+=======
+        <entry key="strut/src/main/res/drawable/motor_preset_contrain_bg.xml" value="0.22916666666666666" />
+        <entry key="strut/src/main/res/drawable/preset_contained_selector.xml" value="0.2140625" />
+>>>>>>> 8844f3a0... 1.Resolved the problem that motorized and sensor could reverse upgrade.
+        <entry key="strut/src/main/res/drawable/selector_light_power_btn_bg.xml" value="0.275" />
+        <entry key="strut/src/main/res/drawable/selector_light_seek_bar_bg.xml" value="0.18888888888888888" />
+        <entry key="strut/src/main/res/layout/activity_add_favorites.xml" value="0.2557291666666667" />
+        <entry key="strut/src/main/res/layout/activity_group.xml" value="0.24166666666666667" />
+        <entry key="strut/src/main/res/layout/activity_main_container.xml" value="0.25" />
+        <entry key="strut/src/main/res/layout/adapter_edit_item_with_select.xml" value="0.2557291666666667" />
+        <entry key="strut/src/main/res/layout/fragment_add_start.xml" value="0.25" />
+        <entry key="strut/src/main/res/layout/fragment_advanced_settings.xml" value="0.2557291666666667" />
+        <entry key="strut/src/main/res/layout/fragment_base_control_dialog.xml" value="0.27355072463768115" />
+        <entry key="strut/src/main/res/layout/fragment_common_auto.xml" value="0.21302083333333333" />
+        <entry key="strut/src/main/res/layout/fragment_dmx.xml" value="0.13125" />
+        <entry key="strut/src/main/res/layout/fragment_dmx_items.xml" value="0.13125" />
+        <entry key="strut/src/main/res/layout/fragment_edit_group.xml" value="0.2557291666666667" />
+        <entry key="strut/src/main/res/layout/fragment_group_info.xml" value="0.17447916666666666" />
+        <entry key="strut/src/main/res/layout/layout_light_control_common_newer.xml" value="0.25" />
+        <entry key="strut/src/main/res/menu/menu_home.xml" value="0.13229166666666667" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

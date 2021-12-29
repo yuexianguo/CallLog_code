@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="Home">
+        <item>bg_row_br_boy</item>
+        <item>bg_row_br_girl</item>
+        <item>bg_row_br_guest</item>
+        <item>bg_row_dr_formal</item>
+        <item>bg_row_fam_rm</item>
+        <item>bg_row_kit</item>
+        <item>bg_row_lr_casual</item>
+        <item>bg_row_lr_formal</item>
+        <item>bg_row_mb_cont</item>
+        <item>bg_row_mb_trad</item>
+        <item>bg_row_res_patio</item>
+        <item>bg_row_stu_ho</item>
+        <item>bg_row_stu_trad</item>
+    </string-array>
+    <string-array name="Cabin">
+    </string-array>
+    <string-array name="Building">
+    </string-array>
+    <string-array name="Hotel">
+    </string-array>
+    <string-array name="Restaurant">
+        <item>bg_row_rest_bar_cas</item>
+        <item>bg_row_rest_bar_el</item>
+        <item>bg_row_rest_din</item>
+    </string-array>
+    <string-array name="Others">
+        <item>bg_row_ls_home</item>
+        <item>bg_row_ls_path</item>
+        <item>bg_row_ls_tree</item>
+        <item>bg_row_ret_fs</item>
+        <item>bg_row_ret_wall</item>
+    </string-array>
+    <string-array name="switch_sensitivity">
+        <item>High</item>
+        <item>Medium</item>
+        <item>Low</item>
+    </string-array>
+</resources>

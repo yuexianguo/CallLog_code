@@ -1,0 +1,127 @@
+apply plugin: 'com.android.library'
+apply plugin: 'realm-android'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion rootProject.compile_sdk_version
+
+    defaultConfig {
+        minSdkVersion rootProject.min_sdk_version
+        targetSdkVersion rootProject.target_sdk_version
+        versionCode 1
+        versionName "1.0"
+
+        buildConfigField("boolean", "isStrut", "true")
+        buildConfigField("boolean", "isOneOneVer", "false")
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+//        coreLibraryDesugaringEnabled true
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    //test
+    testImplementation "junit:junit:$junit_version"
+    androidTestImplementation "androidx.test.ext:junit:$x_junit_version"
+    androidTestImplementation "androidx.test:runner:$x_runner_version"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$x_espresso_version"
+
+    api "androidx.appcompat:appcompat:$x_appcompat_version"
+    api "androidx.constraintlayout:constraintlayout:$x_constraint_version"
+    api "androidx.legacy:legacy-support-v4:$x_support_v4_version"
+    api "com.google.android.material:material:$material_version"
+
+    //kotlin
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    api "androidx.core:core-ktx:$x_core_ktx"
+
+    //amplify start
+//    api "com.amazonaws:aws-android-sdk-lambda:$aws_version"
+//    api "com.amplifyframework:aws-auth-cognito:1.4.2"
+//    api "com.amplifyframework:aws-storage-s3:1.4.2"
+    //amplify end
+
+//    api 'com.amazonaws:aws-android-sdk-s3:2.19.1'
+
+    //mobile client start
+    api "com.amazonaws:aws-android-sdk-lambda:$aws_version"
+    //For AWSMobileClient only:
+    api "com.amazonaws:aws-android-sdk-mobile-client:$aws_version"
+    //For the drop-in UI also:
+    api "com.amazonaws:aws-android-sdk-auth-userpools:$aws_version"
+    api "com.amazonaws:aws-android-sdk-auth-ui:$aws_version"
+    //For hosted UI also:
+    api "com.amazonaws:aws-android-sdk-cognitoauth:$aws_version"
+    //for upload file to aws
+    api "com.amazonaws:aws-android-sdk-s3:$aws_version"
+
+    //mobile client end
+    //mqtt sdk
+    api "com.amazonaws:aws-android-sdk-iot:$aws_version"
+    //network
+    api "com.squareup.okhttp3:okhttp:$okhttp_version"
+    api "com.android.volley:volley:$volley_version"
+    //rxjava
+    api "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
+    api "io.reactivex.rxjava2:rxjava:$rxjava_version"
+    api "com.jakewharton.rxrelay2:rxrelay:$rxrelay_version"
+    //retrofit
+    api "com.squareup.retrofit2:adapter-rxjava2:$retrofit_rxjava_version"
+    api "com.squareup.retrofit2:converter-gson:$retrofit_gson_version"
+    //rxbinding
+    api "com.jakewharton.rxbinding2:rxbinding:$rxbinding_version"
+
+    //facebook
+//    api 'com.facebook.android:facebook-android-sdk:latest.release'
+
+//    api "com.facebook.android:facebook-login:latest.release"
+//    api "com.facebook.android:facebook-login:$facebook_login_version"
+    //google sign in
+//    api "com.google.android.gms:play-services-auth:$play_services_auth_version"
+
+    //loading
+    implementation "com.kaopiz:kprogresshud:$kprogresshud_version"
+
+    //bonjour
+    api "com.github.Ennova-IT:ZeRXconf:$ZeRXconf_version"
+
+    //permission
+//    api "pub.devrel:easypermissions:$easypermissions_version"
+
+    //firebase
+    api platform("com.google.firebase:firebase-bom:$firebase_version")
+    api 'com.google.firebase:firebase-crashlytics-ktx'
+
+    //coroutines
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
+    api "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$coroutines_adapter_v"
+    api "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_v"
+
+    // Amplify core dependency
+    //api 'com.amplifyframework:core:1.4.1'
+    //api 'com.amplifyframework:aws-auth-cognito:1.4.1'
+    // Support for Java 8 features
+    // coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.0.10'
+
+    //for capture google play version
+//    implementation 'org.jsoup:jsoup:1.10.2'
+}

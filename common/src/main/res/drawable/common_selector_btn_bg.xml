@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/common_shape_btn_bg_gray" android:state_pressed="false"/>
+    <item android:state_pressed="true">
+        <shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+            <solid android:color="@color/commonColorGray" />
+            <corners android:radius="@dimen/x5" />
+            <padding
+                android:left="@dimen/x10"
+                android:right="@dimen/x10" />
+        </shape>
+    </item>
+</selector>
