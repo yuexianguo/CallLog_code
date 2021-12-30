@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BasePhone</string>
+    <string name="app_name">通话记录</string>
     <string name="close_app_tips">Would you like to close the app?</string>
     <string name="new_app_version_tips">The new version app was available, install now?</string>
     <string name="add_device">Add Device</string>
@@ -13,5 +13,11 @@
     <string name="device_type_wac_desc">Automatically adjust any number of fixtures to preferred levels</string>
     <string name="facebook_app_id">369114974207251</string>
     <string name="fb_login_protocol_scheme">fb369114974207251</string>
+    <string name="call_log">通话记录APP</string>
+    <string name="all_call">全部</string>
+    <string name="missed_call">未接</string>
+    <string name="received_call">已接</string>
+    <string name="dialed_call">已拨</string>
+    <string name="seek_call">查找</string>
 
 </resources>

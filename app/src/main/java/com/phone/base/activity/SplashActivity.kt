@@ -1,4 +1,4 @@
-package com.phone.base.ui
+package com.phone.base.activity
 
 import android.content.Intent
 import android.os.Bundle

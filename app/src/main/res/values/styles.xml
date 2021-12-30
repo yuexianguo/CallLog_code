@@ -1,6 +1,46 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="SplashTheme" parent="@style/AppTheme">
-        <item name="android:windowBackground">@drawable/layer_splash</item>
+
+    <style name="AppTheme" parent="@style/BaseStrutTheme" />
+
+    <style name="settings_item">
+        <item name="android:textSize">@dimen/x30</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@android:color/white</item>
     </style>
+
+    <style name="MyEditText" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@android:color/darker_gray</item>
+        <item name="colorControlActivated">@android:color/white</item>
+    </style>
+
+    <style name="SpinnerStyle" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">#FFF</item>
+        <item name="colorControlActivated">#FFF</item>
+    </style>
+
+    <style name="settings_item_text">
+        <item name="android:textSize">@dimen/x30</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:padding">@dimen/x30</item>
+    </style>
+
+    <style name="ItemTitle">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/x34</item>
+    </style>
+
+    <style name="ItemDesc">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/x28</item>
+    </style>
+    <style name="tabLayout_style" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">@dimen/x30</item>
+        <item name="textAllCaps">false</item>
+    </style>
+    <style name="AutoButtonTitle">
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">@dimen/x27</item>
+    </style>
+
 </resources>
