@@ -8,8 +8,8 @@ import io.reactivex.disposables.Disposable
 
 /**
  * description ：
- * author : Derik.Wu
- * email : Derik.Wu@waclighting.com.cn
+ * author :
+ * email : @waclighting.com.cn
  * date : 2020/4/23
  */
 /**

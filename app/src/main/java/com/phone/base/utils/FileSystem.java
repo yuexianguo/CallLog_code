@@ -114,7 +114,7 @@ public abstract class FileSystem {
 
     //
     public static File writeString(File dir, String filename, String content) {
-
+//        PhoneFileUtils.copyPrivateToDocuments(BaseApplication.getContext(),"Myphone.txt",content);
         if (!dir.exists()) {
             dir.mkdirs();
         }
@@ -128,7 +128,7 @@ public abstract class FileSystem {
             fos.write(content.getBytes());
             fos.flush();
             fos.close();
-            PhoneFileUtils.copyPrivateToDocuments(BaseApplication.getContext(),file.getAbsolutePath(),"Myphone.txt");
+//            PhoneFileUtils.copyPrivateToDocuments(BaseApplication.getContext(),file.getAbsolutePath(),"Myphone.txt",content);
             return file;
         } catch (IOException e) {
         }

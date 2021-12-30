@@ -6,8 +6,8 @@ import io.realm.Realm
 
 /**
  * description ：
- * author : Derik.Wu
- * email : Derik.Wu@waclighting.com.cn
+ * author :
+ * email : @waclighting.com.cn
  * date : 2021/1/21
  */
 object GroupDbUtils {

@@ -70,7 +70,7 @@ abstract class BaseFragment : Fragment(), BaseView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         LogUtil.d("class=" ,this.javaClass.simpleName)
-        setTips(null, null)
+//        setTips(null, null)
         initViews()
         isViewPrepared = true
         lazyFetchDataIfPrepared()
@@ -143,9 +143,9 @@ abstract class BaseFragment : Fragment(), BaseView {
         (activity as? BaseActivity)?.setToolbarBackButton(isBlack, enableBack)
     }
 
-    protected fun setTips(title: String?, tips: String?) {
-        (activity as? BaseActivity)?.setTips(title, tips)
-    }
+//    protected fun setTips(title: String?, tips: String?) {
+//        (activity as? BaseActivity)?.setTips(title, tips)
+//    }
 
     protected val actionBar: ActionBar?
         get() {

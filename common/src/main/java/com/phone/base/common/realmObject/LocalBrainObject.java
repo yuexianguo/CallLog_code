@@ -6,8 +6,8 @@ import io.realm.annotations.PrimaryKey;
 
 /**
  * description ：Used to save local information of the brain
- * author : Derik.Wu
- * email : Derik.Wu@waclighting.com.cn
+ * author : 
+ * email : @waclighting.com.cn
  * date : 2021/1/27
  */
 public class LocalBrainObject extends RealmObject {

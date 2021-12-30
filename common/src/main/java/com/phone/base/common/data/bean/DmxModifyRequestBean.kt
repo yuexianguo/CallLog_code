@@ -4,8 +4,8 @@ import com.phone.base.common.RequestActions
 
 /**
  * description ：
- * author : Derik.Wu
- * email : Derik.Wu@waclighting.com.cn
+ * author :
+ * email : @waclighting.com.cn
  * date : 2021/3/29
  */
 data class DmxModifyRequestBean(

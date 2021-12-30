@@ -4,8 +4,8 @@ import android.view.View
 import com.phone.base.common.SINGLE_CLICK_EVENT_TIME
 
 /**
- * author : Derik.Wu
- * email : Derik.Wu@waclighting.com.cn
+ * author :
+ * email : @waclighting.com.cn
  * date : 2020/4/21
  */
 abstract class OnSingleClickListener : View.OnClickListener {

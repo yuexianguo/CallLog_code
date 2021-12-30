@@ -5,8 +5,8 @@ import androidx.annotation.StringDef
 
 /**
  * description ： All types defined in this interface ars used as enum
- * author : Derik.Wu
- * email : Derik.Wu@waclighting.com.cn
+ * author :
+ * email : @waclighting.com.cn
  * date : 2020/8/27
  */
 interface CustomTypes {

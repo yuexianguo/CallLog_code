@@ -48,23 +48,12 @@
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.AppBarLayout>
 
-        <include
-            android:id="@+id/vg_tips_base"
-            layout="@layout/common_layout_base_tips"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/appbar_base"
-            android:layout_marginLeft="@dimen/x30"
-            android:layout_marginTop="@dimen/x10"
-            android:layout_marginRight="@dimen/x30"
-            android:layout_marginBottom="@dimen/x10"
-            android:visibility="gone" />
 
         <ViewStub
             android:id="@+id/vs_content_base"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/vg_tips_base" />
+            android:layout_below="@id/appbar_base" />
 
         <ImageView
             android:id="@+id/iv_base_favorites"

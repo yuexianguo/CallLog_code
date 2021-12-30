@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:gravity="center_vertical"
+    android:padding="@dimen/x10"
+    android:layout_height="@dimen/x100">
+
+    <ImageView
+        android:id="@+id/item_call_type"
+        android:padding="@dimen/x10"
+        android:layout_width="@dimen/x100"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_type_call_out"
+        />
+
+    <View
+        android:layout_width="@dimen/x2"
+        android:layout_height="match_parent"
+        android:background="@color/commonColorLightGray"
+        />
+
+    <TextView
+        android:id="@+id/item_call_name"
+        style="@style/ItemTitle"
+        android:padding="@dimen/x10"
+        android:text="老王"
+        android:layout_width="@dimen/x200"
+        android:layout_height="wrap_content"
+        />
+
+    <View
+        android:layout_width="@dimen/x2"
+        android:layout_height="match_parent"
+        android:background="@color/commonColorLightGray"
+        />
+
+    <TextView
+        android:id="@+id/item_call_phone_number"
+        style="@style/ItemTitle"
+        android:padding="@dimen/x10"
+        android:text="0755-123456789"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        />
+    <View
+        android:layout_width="@dimen/x2"
+        android:layout_height="match_parent"
+        android:background="@color/commonColorLightGray"
+        />
+    <TextView
+        android:id="@+id/item_call_start_time"
+        style="@style/ItemTitle"
+        android:padding="@dimen/x10"
+        android:text="12-22 22:00"
+        android:layout_width="@dimen/x300"
+        android:layout_height="wrap_content"
+        />
+    <View
+        android:layout_width="@dimen/x2"
+        android:layout_height="match_parent"
+        android:background="@color/commonColorLightGray"
+        />
+    <TextView
+        android:id="@+id/item_call_time_long"
+        style="@style/ItemTitle"
+        android:padding="@dimen/x10"
+        android:text="00:40"
+        android:layout_width="@dimen/x200"
+        android:layout_height="wrap_content"
+        />
+    <View
+        android:layout_width="@dimen/x2"
+        android:layout_height="match_parent"
+        android:background="@color/commonColorLightGray"
+        />
+
+    <LinearLayout
+        android:layout_width="@dimen/x120"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingLeft="@dimen/x30"
+        >
+
+        <CheckBox
+            android:id="@+id/edit_item_with_select_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:padding="@dimen/x20"
+            android:theme="@style/My_CheckBox"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
+
+
+</LinearLayout>

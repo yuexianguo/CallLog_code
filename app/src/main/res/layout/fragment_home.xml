@@ -4,23 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/commonColorBase"
-    android:orientation="vertical"
-    >
+    android:background="@color/white"
+    android:orientation="vertical">
 
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_home"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:tabGravity="fill"
         app:tabIndicatorColor="@android:color/darker_gray"
-        app:tabMode="scrollable"
+        app:tabMaxWidth="0dp"
+        app:tabMode="fixed"
+        app:tabBackground="@drawable/tab_background"
+        android:background="@color/commonColorBase"
         app:tabSelectedTextColor="@android:color/white"
         app:tabTextAppearance="@style/tabLayout_style"
         app:tabTextColor="@android:color/darker_gray" />
 
     <FrameLayout
         android:id="@+id/fl_home_container"
+        android:padding="@dimen/x5"
+        android:layout_marginBottom="@dimen/x30"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

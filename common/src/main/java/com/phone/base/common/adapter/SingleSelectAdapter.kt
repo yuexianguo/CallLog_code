@@ -6,8 +6,8 @@ import com.phone.base.common.R
 
 /**
  * description ：Used for single select in recyclerview
- * author : Derik.Wu
- * email : Derik.Wu@waclighting.com.cn
+ * author :
+ * email : @waclighting.com.cn
  * date : 2021/1/26
  */
 abstract class SingleSelectAdapter<T>(list: List<T>) : CustomBaseAdapter<T, SingleSelectAdapter<T>.SingleSelectHolder>(R.layout.common_adapter_item_single_selector, list) {

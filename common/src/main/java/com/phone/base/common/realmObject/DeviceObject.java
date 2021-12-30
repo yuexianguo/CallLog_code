@@ -9,8 +9,8 @@ import io.realm.annotations.PrimaryKey;
 
 /**
  * description ：
- * author : Derik.Wu
- * email : Derik.Wu@waclighting.com.cn
+ * author : 
+ * email : @waclighting.com.cn
  * date : 2020/10/22
  */
 

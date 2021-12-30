@@ -15,7 +15,7 @@ class ReceivedCallLogFragment : BaseFragment() {
     private var mMainActivity: MainActivity? = null
 
     override val layoutId: Int
-        get() = R.layout.fragment_main
+        get() = R.layout.fragment_call_log
 
     companion object {
         @JvmStatic

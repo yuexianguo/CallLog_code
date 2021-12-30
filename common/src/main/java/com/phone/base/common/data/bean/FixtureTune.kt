@@ -5,8 +5,8 @@ import io.realm.RealmList
 
 /**
  * description ：
- * author : Derik.Wu
- * email : Derik.Wu@waclighting.com.cn
+ * author :
+ * email : @waclighting.com.cn
  * date : 2020/8/12
  */
 data class FixtureTune(

@@ -9,8 +9,8 @@ import kotlin.math.min
 
 /**
  * description ：
- * author : Derik.Wu
- * email : Derik.Wu@waclighting.com.cn
+ * author :
+ * email : @waclighting.com.cn
  * date : 2020/7/24
  */
 object GroupObjectUtils {

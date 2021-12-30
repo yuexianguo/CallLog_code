@@ -7,8 +7,8 @@ import kotlinx.coroutines.cancel
 
 /**
  * description :
- * author : Derik.Wu
- * email : Derik.Wu@waclighting.com.cn
+ * author :
+ * email : @waclighting.com.cn
  * date : 2021/2/4
  */
 /**

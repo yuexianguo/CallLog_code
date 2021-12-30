@@ -6,8 +6,8 @@ import static com.phone.base.common.ConstantsKt.SINGLE_CLICK_EVENT_TIME;
 
 /**
  * description ：Double-click
- * author : Derik.Wu
- * email : Derik.Wu@waclighting.com.cn
+ * author : 
+ * email : @waclighting.com.cn
  * date : 2020/4/20
  */
 public class OnClickUtils {

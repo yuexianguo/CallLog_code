@@ -16,8 +16,8 @@ import okio.Buffer;
 
 /**
  * description ：
- * author : Derik.Wu
- * email : Derik.Wu@waclighting.com.cn
+ * author : 
+ * email : @waclighting.com.cn
  * date : 2020/10/13
  */
 public class LogInfoInterceptor implements Interceptor {

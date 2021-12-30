@@ -8,12 +8,15 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.google.android.material.tabs.TabLayout
 import com.phone.base.R
 import com.phone.base.activity.MainActivity
+import com.phone.base.common.BaseApplication
 import com.phone.base.common.BaseFragment
+import com.phone.base.file.PhoneBookInfo
+import com.phone.base.utils.PhoneFileUtils
 import kotlinx.android.synthetic.main.fragment_home.*
 
 const val TAG_HOME_FRAGMENT = "HomeFragment"
 
-class HomeFragment : BaseFragment(){
+class HomeFragment : BaseFragment() {
 
     private var mMainActivity: MainActivity? = null
     private var mTabTitles: Array<String>? = null
@@ -38,13 +41,12 @@ class HomeFragment : BaseFragment(){
         get() = R.layout.fragment_home
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mCurrentIndex = 1
+        mCurrentIndex = 0
         savedInstanceState?.let {
             mCurrentIndex = it.getInt(KEY_CURRENT_SELECTED_POSITION)
-            mAllCallLogFragment= childFragmentManager.findFragmentByTag(TAG_ALL_CALL_FRAGMENT) as AllCallLogFragment?
+            mAllCallLogFragment = childFragmentManager.findFragmentByTag(TAG_ALL_CALL_FRAGMENT) as AllCallLogFragment?
             mMissedCallLogFragment = childFragmentManager.findFragmentByTag(TAG_MISSED_CALL_FRAGMENT) as MissedCallLogFragment?
             mReceivedCallLogFragment = childFragmentManager.findFragmentByTag(TAG_RECEIVED_CALL_FRAGMENT) as ReceivedCallLogFragment?
             mDialedCallLogFragment = childFragmentManager.findFragmentByTag(TAG_DIALED_CALL_FRAGMENT) as DialedCallLogFragment?
@@ -75,8 +77,10 @@ class HomeFragment : BaseFragment(){
         selectedIndex(mCurrentIndex)
         mMainActivity?.hideAppbar()
         mMainActivity?.hideToolbar()
-    }
 
+//        PhoneFileUtils.copyPrivateToDocuments(BaseApplication.context, "Myphone.txt", PhoneBookInfo("研发部","13111111").toString());
+
+    }
 
 
     override fun onResume() {
@@ -86,7 +90,6 @@ class HomeFragment : BaseFragment(){
 
     override fun lazyFetchData() {
     }
-
 
 
     fun selectedIndex(index: Int) {
@@ -151,7 +154,6 @@ class HomeFragment : BaseFragment(){
         }
         transaction.commit()
     }
-
 
 
     override fun onPause() {

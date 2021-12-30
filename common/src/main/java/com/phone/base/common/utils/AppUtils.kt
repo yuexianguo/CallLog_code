@@ -7,8 +7,8 @@ import com.phone.base.common.BaseApplication.Companion.context
 
 /**
  * description ：
- * author : Derik.Wu
- * email : Derik.Wu@waclighting.com.cn
+ * author :
+ * email : @waclighting.com.cn
  * date : 2020/5/18
  */
 object AppUtils {

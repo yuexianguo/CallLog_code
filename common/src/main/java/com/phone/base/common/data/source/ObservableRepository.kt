@@ -8,8 +8,8 @@ import okhttp3.RequestBody.Companion.toRequestBody
 
 /**
  * description :
- * author : Derik.Wu
- * email : Derik.Wu@waclighting.com.cn
+ * author :
+ * email : @waclighting.com.cn
  * data : 2021/3/19
  */
 object ObservableRepository {

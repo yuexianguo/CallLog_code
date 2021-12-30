@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:gravity="center_vertical"
+    android:padding="@dimen/x10"
+    android:background="@color/commonColorGray"
+    android:layout_height="@dimen/x100">
+
+    <TextView
+        android:id="@+id/call_type"
+        style="@style/ItemTitle"
+        android:padding="@dimen/x10"
+        android:text="类型"
+        android:layout_width="@dimen/x100"
+        android:layout_height="wrap_content"
+        />
+
+    <View
+        android:layout_width="@dimen/x2"
+        android:layout_height="match_parent"
+        android:background="@color/commonColorLightGray"
+        />
+
+    <TextView
+        android:id="@+id/call_name"
+        style="@style/ItemTitle"
+        android:padding="@dimen/x10"
+        android:text="姓名"
+        android:layout_width="@dimen/x200"
+        android:layout_height="wrap_content"
+        />
+
+    <View
+        android:layout_width="@dimen/x2"
+        android:layout_height="match_parent"
+        android:background="@color/commonColorLightGray"
+        />
+
+    <TextView
+        android:id="@+id/call_phone_number"
+        style="@style/ItemTitle"
+        android:padding="@dimen/x10"
+        android:text="电话"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        />
+    <View
+        android:layout_width="@dimen/x2"
+        android:layout_height="match_parent"
+        android:background="@color/commonColorLightGray"
+        />
+    <TextView
+        android:id="@+id/call_start_time"
+        style="@style/ItemTitle"
+        android:padding="@dimen/x10"
+        android:text="时间"
+        android:layout_width="@dimen/x300"
+        android:layout_height="wrap_content"
+        />
+    <View
+        android:layout_width="@dimen/x2"
+        android:layout_height="match_parent"
+        android:background="@color/commonColorLightGray"
+        />
+    <TextView
+        android:id="@+id/call_time_long"
+        style="@style/ItemTitle"
+        android:padding="@dimen/x10"
+        android:text="时长"
+        android:layout_width="@dimen/x200"
+        android:layout_height="wrap_content"
+        />
+    <View
+        android:layout_width="@dimen/x2"
+        android:layout_height="match_parent"
+        android:background="@color/commonColorLightGray"
+        />
+    <TextView
+        android:id="@+id/call_select"
+        style="@style/ItemTitle"
+        android:padding="@dimen/x10"
+        android:text="选中"
+        android:layout_width="@dimen/x120"
+        android:layout_height="wrap_content"
+        />
+
+</LinearLayout>

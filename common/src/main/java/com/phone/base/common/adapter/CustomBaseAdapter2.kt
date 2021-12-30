@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 
 /**
  * description ：
- * author : Derik.Wu
- * email : Derik.Wu@waclighting.com.cn
+ * author :
+ * email : @waclighting.com.cn
  * date : 2021/3/5
  */
 

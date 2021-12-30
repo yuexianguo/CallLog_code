@@ -95,11 +95,17 @@ abstract class BaseActivity : AppCompatActivity(), OperationCallback, BaseView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        hideWindowStatusbar()
         setContentView(R.layout.common_activity_base)
         initCommonAppbar()
         setContentLayout()
         initDrawLayout()
         initViews()
+    }
+
+    private fun hideWindowStatusbar() {
+        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        window.clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
     }
 
     private fun initDrawLayout() {
@@ -395,33 +401,33 @@ abstract class BaseActivity : AppCompatActivity(), OperationCallback, BaseView {
         setToolbar(toolbar, tvTitle)
     }
 
-    fun setTips(title: String?, tips: String?) {
-        LogUtil.d("class= setTips=" , this.javaClass.simpleName)
-        val vgTips: ViewGroup = findViewById(R.id.vg_tips_base)
-        if (!title.isNullOrEmpty() || !tips.isNullOrEmpty()) {
-            vgTips.visibility = View.VISIBLE
-            val tvTipsTitle = vgTips.findViewById<TextView>(R.id.tv_tips_title_base)
-            val tvTips = vgTips.findViewById<TextView>(R.id.tv_tips_text_base)
-            val ivTipsClose = vgTips.findViewById<ImageView>(R.id.iv_close_tips_base)
-            ivTipsClose.setOnClickListener { vgTips.visibility = View.GONE }
-            if (title.isNullOrEmpty()) {
-                tvTipsTitle.visibility = View.GONE
-            } else {
-                tvTipsTitle.visibility = View.VISIBLE
-                tvTipsTitle.text = title
-            }
-            if (tips.isNullOrEmpty()) {
-                tvTips.visibility = View.GONE
-                ivTipsClose.visibility = View.GONE
-            } else {
-                ivTipsClose.visibility = View.VISIBLE
-                tvTips.visibility = View.VISIBLE
-                tvTips.text = tips
-            }
-        } else {
-            vgTips.visibility = View.GONE
-        }
-    }
+//    fun setTips(title: String?, tips: String?) {
+//        LogUtil.d("class= setTips=" , this.javaClass.simpleName)
+//        val vgTips: ViewGroup = findViewById(R.id.vg_tips_base)
+//        if (!title.isNullOrEmpty() || !tips.isNullOrEmpty()) {
+//            vgTips.visibility = View.VISIBLE
+//            val tvTipsTitle = vgTips.findViewById<TextView>(R.id.tv_tips_title_base)
+//            val tvTips = vgTips.findViewById<TextView>(R.id.tv_tips_text_base)
+//            val ivTipsClose = vgTips.findViewById<ImageView>(R.id.iv_close_tips_base)
+//            ivTipsClose.setOnClickListener { vgTips.visibility = View.GONE }
+//            if (title.isNullOrEmpty()) {
+//                tvTipsTitle.visibility = View.GONE
+//            } else {
+//                tvTipsTitle.visibility = View.VISIBLE
+//                tvTipsTitle.text = title
+//            }
+//            if (tips.isNullOrEmpty()) {
+//                tvTips.visibility = View.GONE
+//                ivTipsClose.visibility = View.GONE
+//            } else {
+//                ivTipsClose.visibility = View.VISIBLE
+//                tvTips.visibility = View.VISIBLE
+//                tvTips.text = tips
+//            }
+//        } else {
+//            vgTips.visibility = View.GONE
+//        }
+//    }
 
     /**
      * finish the current page, if user press back button

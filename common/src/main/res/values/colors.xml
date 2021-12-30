@@ -12,7 +12,8 @@
     <color name="commonColorYellow">#FFFF00</color>
     <color name="commonColorBrown">#A52A2A</color>
     <color name="commonColorHotPink">#FF69B4</color>
-    <color name="commonColorGray">#999999</color>
+    <color name="commonColorGray">#88BCBBC7</color>
+    <color name="commonColorLightGray">#666667</color>
 
     <color name="commonColorGrayDark">#666667</color>
     <color name="commonTextColor">@color/commonColorWhite</color>

@@ -19,8 +19,8 @@ import kotlinx.coroutines.launch
 
 /**
  * description ：Use Flow
- * author : Derik.Wu
- * email : Derik.Wu@waclighting.com.cn
+ * author :
+ * email : @waclighting.com.cn
  * date : 2021/2/3
  */
 class CStrutDataRepository : CStrutDataSource {

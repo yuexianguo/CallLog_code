@@ -6,8 +6,8 @@ import androidx.fragment.app.FragmentTransaction
 
 /**
  * description ：
- * author : Derik.Wu
- * email : Derik.Wu@waclighting.com.cn
+ * author :
+ * email : @waclighting.com.cn
  * date : 2020/7/14
  */
 object ActivityUtils {

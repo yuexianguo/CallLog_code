@@ -9,8 +9,8 @@ import android.text.TextUtils;
 
 /**
  * description ：
- * author : Derik.Wu
- * email : Derik.Wu@waclighting.com.cn
+ * author : 
+ * email : @waclighting.com.cn
  * date : 2020/5/27
  */
 public class NetUtils {

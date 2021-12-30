@@ -18,8 +18,8 @@ import com.phone.base.common.utils.PXTool
 
 /**
  * description ：
- * author : Derik.Wu
- * email : Derik.Wu@waclighting.com.cn
+ * author :
+ * email : @waclighting.com.cn
  * date : 2021/1/8
  */
 

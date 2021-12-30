@@ -15,8 +15,8 @@ import okhttp3.ResponseBody;
 
 /**
  * description ：
- * author : Derik.Wu
- * email : Derik.Wu@waclighting.com.cn
+ * author : 
+ * email : @waclighting.com.cn
  * date : 2020/11/06
  */
 public class ErrorHandleInterceptor implements Interceptor {
