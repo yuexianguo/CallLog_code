@@ -3,8 +3,9 @@ package com.phone.base.adapter
 import android.view.View
 import android.widget.TextView
 import com.phone.base.R
+import com.phone.base.bean.PhoneBookInfo
+import com.phone.base.bean.PhoneBookItem
 import com.phone.base.common.adapter.CustomBaseAdapter
-import com.phone.base.file.PhoneBookItem
 
 class CallLogAdapter(list: MutableList<PhoneBookItem>) :
         CustomBaseAdapter<PhoneBookItem, CallLogAdapter.CallLogHolder>(R.layout.adapter_item_call_log, list) {
@@ -13,10 +14,10 @@ class CallLogAdapter(list: MutableList<PhoneBookItem>) :
         return CallLogHolder(view)
     }
 
-    override fun onBindCustomViewHolder(callLogHolder: CallLogHolder, phoneBookItem: PhoneBookItem) {
+    override fun onBindCustomViewHolder(callLogHolder: CallLogHolder, phoneBookitem: PhoneBookItem) {
         try {
-            callLogHolder.item_call_name.text = phoneBookItem.department
-            callLogHolder.item_call_phone_number.text = phoneBookItem.phoneNumer
+            callLogHolder.item_call_name.text = phoneBookitem.name
+            callLogHolder.item_call_phone_number.text = phoneBookitem.phone1
         } catch (e: Exception) {
             e.printStackTrace()
         }

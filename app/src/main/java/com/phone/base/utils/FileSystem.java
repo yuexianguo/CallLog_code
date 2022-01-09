@@ -21,11 +21,10 @@
  *******************************************************************************************************/
 package com.phone.base.utils;
 
-import android.app.Application;
 import android.content.Context;
 import android.os.Environment;
 
-import com.phone.base.common.BaseApplication;
+
 import com.phone.base.common.utils.LogUtil;
 
 import java.io.BufferedReader;
@@ -114,7 +113,7 @@ public abstract class FileSystem {
 
     //
     public static File writeString(File dir, String filename, String content) {
-//        PhoneFileUtils.copyPrivateToDocuments(BaseApplication.getContext(),"Myphone.txt",content);
+
         if (!dir.exists()) {
             dir.mkdirs();
         }
@@ -128,7 +127,7 @@ public abstract class FileSystem {
             fos.write(content.getBytes());
             fos.flush();
             fos.close();
-//            PhoneFileUtils.copyPrivateToDocuments(BaseApplication.getContext(),file.getAbsolutePath(),"Myphone.txt",content);
+//            PhoneFileUtils.copyPrivateToDocuments(BaseApplication.getContext(),file.getAbsolutePath(),"Myphone.txt");
             return file;
         } catch (IOException e) {
         }

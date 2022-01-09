@@ -1,18 +1,26 @@
 package com.phone.base.activity
 
+import android.Manifest
 import android.content.DialogInterface
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.phone.base.R
 import com.phone.base.common.BaseActivity
+import com.phone.base.common.BaseApplication.Companion.context
 import com.phone.base.common.utils.ActivityUtils.replaceFragment
 import com.phone.base.fragment.HomeFragment
 import com.phone.base.fragment.TAG_HOME_FRAGMENT
+import com.phone.base.manager.PhoneInfoManager
 
 class MainActivity : BaseActivity() {
     private var mIsActive = false
+
     companion object {
+        private val REQUES_READ_WRITE_CODE = 0x01
         private const val TAG = "MainActivity"
     }
 
