@@ -5,8 +5,8 @@ import android.os.Build
 import android.os.Environment
 import com.google.gson.Gson
 import com.phone.base.utils.FileSystem
+import com.phone.base.utils.PhoneFileUtils
 import com.phone.base.utils.PhoneFileUtils.FILE_NAME
-
 import java.io.File
 import java.io.Serializable
 
@@ -25,13 +25,13 @@ class PhoneBookInfo : Serializable {
 
     fun saveOrUpdate(context: Context) {
         FileSystem.writeString(context.filesDir, FILE_NAME, Gson().toJson(this))
-//        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
             //android 9 以下
             val storagePublicDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS)
             FileSystem.writeString(storagePublicDirectory, FILE_NAME, Gson().toJson(this))
-//        } else {
-//            PhoneFileUtils.copyPrivateToDocuments(context, File(context.filesDir, FILE_NAME).absolutePath)
-//        }
+        } else {
+            PhoneFileUtils.copyPrivateToDocuments(context, File(context.filesDir, FILE_NAME).absolutePath)
+        }
     }
 
     fun insertPhoneItem(phoneBookItem: PhoneBookItem) {
@@ -44,12 +44,24 @@ class PhoneBookInfo : Serializable {
 
     //for create PhoneBookItem only
     fun generatePhoneId(): Long {
-        return if (phoneList.size == 0) 1 else (phoneList.size + 1).toLong()
+        var targetId = 0L
+        if (phoneList.size <= 0) {
+            targetId = 1
+        } else {
+            targetId = phoneList[phoneList.size - 1].id + 1
+        }
+        return targetId
     }
 
     //for create DepartItem only
     fun generateDeptId(): Long {
-        return if (phoneDepartItemList.size == 0) 1 else (phoneDepartItemList.size + 1).toLong()
+        var targetId = 0L
+        if (phoneDepartItemList.size <= 0) {
+            targetId = 1
+        } else {
+            targetId = phoneDepartItemList[phoneDepartItemList.size - 1].id + 1
+        }
+        return targetId
     }
 
     fun getPhoneBookItem(id: Long): PhoneBookItem? {
@@ -81,28 +93,28 @@ class PhoneBookInfo : Serializable {
                 //1层子类
                 if (targetId == phoneDepartItem.pid) {
                     deleteIds.add(phoneDepartItem.id)
-                    targetId = phoneDepartItem.id
+                    val targetId2 = phoneDepartItem.id
                     for (phoneDepartItem in phoneDepartItemList) {
                         //2层
-                        if (targetId == phoneDepartItem.pid) {
+                        if (targetId2 == phoneDepartItem.pid) {
                             deleteIds.add(phoneDepartItem.id)
-                            targetId = phoneDepartItem.id
+                            val targetId3 = phoneDepartItem.id
 
                             for (phoneDepartItem in phoneDepartItemList) {
                                 //3层
-                                if (targetId == phoneDepartItem.pid) {
+                                if (targetId3 == phoneDepartItem.pid) {
                                     deleteIds.add(phoneDepartItem.id)
-                                    targetId = phoneDepartItem.id
+                                    val targetId4 = phoneDepartItem.id
 
                                     for (phoneDepartItem in phoneDepartItemList) {
                                         //4层
-                                        if (targetId == phoneDepartItem.pid) {
+                                        if (targetId4 == phoneDepartItem.pid) {
                                             deleteIds.add(phoneDepartItem.id)
-                                            targetId = phoneDepartItem.id
+                                            val targetId5 = phoneDepartItem.id
 
                                             for (phoneDepartItem in phoneDepartItemList) {
                                                 //5层
-                                                if (targetId == phoneDepartItem.pid) {
+                                                if (targetId5 == phoneDepartItem.pid) {
                                                     deleteIds.add(phoneDepartItem.id)
                                                 }
                                             }
@@ -118,18 +130,28 @@ class PhoneBookInfo : Serializable {
                 }
             }
 
+            val iterator1 = phoneList.iterator()
+            while (iterator1.hasNext()) {
+                val next = iterator1.next()
+                next.department?.apply {
+                    val deptId = this.id
+                    if (deptId != 0L) {
+                        if (deleteIds.contains(deptId)) {
+                            iterator1.remove()
+                        }
+                    }
+                }
+
+
+            }
+
             val iterator = phoneDepartItemList.iterator()
             while (iterator.hasNext()) {
                 val next = iterator.next()
-                if (deleteIds.contains(next.id)) {
-                    iterator.remove()
-                }
-            }
-            val iterator1 = phoneList.iterator()
-            while (iterator1.hasNext()) {
-                iterator1.next().department?.apply {
-                    if (deleteIds.contains(id)) {
-                        iterator1.remove()
+                val deptId = next.id
+                if (deptId != 0L) {
+                    if (deleteIds.contains(deptId)) {
+                        iterator.remove()
                     }
                 }
 

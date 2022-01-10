@@ -81,6 +81,13 @@ class AllCallLogFragment : BaseFragment() {
         mPhoneList.clear()
         mPhoneList.addAll(phoneList)
         callLogAdapter?.notifyDataSetChanged()
+
+        //test modify
+//        var phoneBookItem = mPhoneList[0]
+//        phoneBookItem.id = 22
+//        phoneBookItem.name = "老大"
+//        PhoneInfoManager.instance.phoneInfo.insertPhoneItem(phoneBookItem)
+//        PhoneInfoManager.instance.phoneInfo.saveOrUpdate(requireContext())
     }
 
 }
