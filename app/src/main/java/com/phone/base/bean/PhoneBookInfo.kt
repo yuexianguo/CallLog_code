@@ -7,15 +7,27 @@ import com.google.gson.Gson
 import com.phone.base.utils.FileSystem
 import com.phone.base.utils.PhoneFileUtils
 import com.phone.base.utils.PhoneFileUtils.FILE_NAME
+import com.phone.base.utils.PinyinUtils
+
 import java.io.File
 import java.io.Serializable
 
 const val TYPE_MAN = "男士"
 const val TYPE_WOMAN = "女士"
+const val DIAL_TYPE_MISSED_CALL = "未接"
+const val DIAL_TYPE_RECEIVED_CALL = "已接"
+const val DIAL_TYPE_DIALED_CALL = "已拨"
 
 class PhoneBookInfo : Serializable {
     var phoneList: ArrayList<PhoneBookItem> = arrayListOf()
     var phoneDepartItemList: ArrayList<PhoneDepartItem> = arrayListOf()
+    var phoneHistoryItemList: ArrayList<PhoneHistoryItem> = arrayListOf()
+    var letterArray = arrayOf(
+        "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K",
+        "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X",
+        "Y", "Z"
+    )
+
 
     companion object {
         fun createNewInstance(): PhoneBookInfo {
@@ -27,7 +39,7 @@ class PhoneBookInfo : Serializable {
         FileSystem.writeString(context.filesDir, FILE_NAME, Gson().toJson(this))
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
             //android 9 以下
-            val storagePublicDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS)
+            val storagePublicDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
             FileSystem.writeString(storagePublicDirectory, FILE_NAME, Gson().toJson(this))
         } else {
             PhoneFileUtils.copyPrivateToDocuments(context, File(context.filesDir, FILE_NAME).absolutePath)
@@ -41,6 +53,11 @@ class PhoneBookInfo : Serializable {
     fun insertDeptItem(phoneDepartItem: PhoneDepartItem) {
         phoneDepartItemList.add(phoneDepartItem)
     }
+
+    fun insertPhoneHistoryItem(phoneHistoryItem: PhoneHistoryItem) {
+        phoneHistoryItemList.add(phoneHistoryItem)
+    }
+
 
     //for create PhoneBookItem only
     fun generatePhoneId(): Long {
@@ -60,6 +77,17 @@ class PhoneBookInfo : Serializable {
             targetId = 1
         } else {
             targetId = phoneDepartItemList[phoneDepartItemList.size - 1].id + 1
+        }
+        return targetId
+    }
+
+    //for create PhoneHistoryItem only
+    fun generatePhoneHistoryItemId(): Long {
+        var targetId = 0L
+        if (phoneHistoryItemList.size <= 0) {
+            targetId = 1
+        } else {
+            targetId = phoneHistoryItemList[phoneHistoryItemList.size - 1].id + 1
         }
         return targetId
     }
@@ -121,12 +149,9 @@ class PhoneBookInfo : Serializable {
                                         }
                                     }
                                 }
-
                             }
                         }
-
                     }
-
                 }
             }
 
@@ -141,8 +166,6 @@ class PhoneBookInfo : Serializable {
                         }
                     }
                 }
-
-
             }
 
             val iterator = phoneDepartItemList.iterator()
@@ -154,11 +177,154 @@ class PhoneBookInfo : Serializable {
                         iterator.remove()
                     }
                 }
-
             }
-
-
         }
+    }
+
+    fun deletePhoneItem(id: Long): Boolean {
+        val iterator = phoneList.iterator()
+        while (iterator.hasNext()) {
+            val next = iterator.next()
+            next.apply {
+                if (id == this.id) {
+                    iterator.remove()
+                    return true
+                }
+            }
+        }
+        return false
+    }
+
+    //found
+    fun foundPhoneBySimpleName(seekSimpleName: String): ArrayList<PhoneBookItem> {
+        var targetList: ArrayList<PhoneBookItem> = arrayListOf()
+        if (phoneList.isNotEmpty()) {
+            for (phoneBookItem in phoneList) {
+                if (phoneBookItem.name.isNotEmpty()) {
+                    val pingYin = PinyinUtils.getPingYin(phoneBookItem.name)
+                    if (pingYin.contains(seekSimpleName, ignoreCase = true)) {
+                        targetList.add(phoneBookItem)
+                    }
+                }
+            }
+        }
+        return targetList
+    }
+
+    fun foundPhoneByNumber(number: String): ArrayList<PhoneBookItem> {
+        var targetList: ArrayList<PhoneBookItem> = arrayListOf()
+        if (phoneList.isNotEmpty()) {
+            for (phoneBookItem in phoneList) {
+                if (phoneBookItem.extension1.isNotEmpty()) {
+                    if (phoneBookItem.extension1.contains(number)) {
+                        targetList.add(phoneBookItem)
+                    }
+                } else if (phoneBookItem.extension2.isNotEmpty()) {
+                    if (phoneBookItem.extension2.contains(number)) {
+                        targetList.add(phoneBookItem)
+                    }
+                }
+            }
+        }
+        return targetList
+    }
+
+    fun foundPhoneBySimpleNameOrNum(foundString: String): ArrayList<PhoneBookItem> {
+        var targetList: ArrayList<PhoneBookItem> = arrayListOf()
+        if (phoneList.isNotEmpty()) {
+            for (phoneBookItem in phoneList) {
+                if (phoneBookItem.extension1.isNotEmpty()) {
+                    if (phoneBookItem.extension1.contains(foundString)) {
+                        targetList.add(phoneBookItem)
+                        continue
+                    }
+                } else if (phoneBookItem.extension2.isNotEmpty()) {
+                    if (phoneBookItem.extension2.contains(foundString)) {
+                        targetList.add(phoneBookItem)
+                        continue
+                    }
+                }
+                if (phoneBookItem.name.isNotEmpty()) {
+                    val pingYin = PinyinUtils.getPingYin(phoneBookItem.name)
+                    val pingYinFound = PinyinUtils.getPingYin(foundString)
+                    if (pingYin.contains(pingYinFound, ignoreCase = true)) {
+                        targetList.add(phoneBookItem)
+                    }
+                }
+            }
+        }
+        return targetList
+    }
+
+    fun foundPhoneByTwoString(desc1: String, desc2: String): ArrayList<PhoneBookItem> {
+        //desc1 和 desc2同时满足
+        var targetList: ArrayList<PhoneBookItem> = arrayListOf()
+        val foundDesc1List = foundPhoneBySimpleNameOrNum(desc1)
+        if (foundDesc1List.isEmpty()) {
+            val foundDesc2List = foundPhoneBySimpleNameOrNum(desc2)
+            targetList.clear()
+            targetList.addAll(foundDesc2List)
+        } else {
+            for (phoneBookItem in foundDesc1List) {
+                if (phoneBookItem.extension1.isNotEmpty()) {
+                    if (phoneBookItem.extension1.contains(desc2)) {
+                        targetList.add(phoneBookItem)
+                        continue
+                    }
+                } else if (phoneBookItem.extension2.isNotEmpty()) {
+                    if (phoneBookItem.extension2.contains(desc2)) {
+                        targetList.add(phoneBookItem)
+                        continue
+                    }
+                }
+                if (phoneBookItem.name.isNotEmpty()) {
+                    val pingYin = PinyinUtils.getPingYin(phoneBookItem.name)
+                    val pingYinFound = PinyinUtils.getPingYin(desc2)
+                    if (pingYin.contains(pingYinFound, ignoreCase = true)) {
+                        targetList.add(phoneBookItem)
+                    }
+                }
+            }
+        }
+        return targetList
+    }
+
+    fun getAllLetterNameList(): ArrayList<HunLetterBean> {
+        var targetLetterNameList: ArrayList<HunLetterBean> = arrayListOf()
+        for (letter in letterArray) {
+            if (phoneList.isNotEmpty()) {
+                var lastNameList: ArrayList<String> = arrayListOf()
+                for (phoneBookItem in phoneList) {
+                    val pingYin = PinyinUtils.getPingYin(phoneBookItem.name)
+                    if (pingYin.isNotEmpty()) {
+                        if (pingYin.substring(0, 1).equals(letter, ignoreCase = true)) {
+                            if (!lastNameList.contains(phoneBookItem.name.substring(0, 1))) {
+                                lastNameList.add(phoneBookItem.name.substring(0, 1))
+                            }
+                        }
+                    }
+                }
+                if (lastNameList.isNotEmpty()) {
+                    targetLetterNameList.add(HunLetterBean(letter, lastNameList))
+                }
+            }
+        }
+        return targetLetterNameList
+    }
+
+    fun getPhoneListByLastName(lastName:String): ArrayList<PhoneBookItem> {
+        var targetList: ArrayList<PhoneBookItem> = arrayListOf()
+        if (phoneList.isNotEmpty()) {
+            for (phoneBookItem in phoneList) {
+                if (phoneBookItem.name.isNotEmpty()) {
+                    val name = phoneBookItem.name
+                    if (name.isNotEmpty() && name.substring(0,1).equals(lastName, ignoreCase = true)) {
+                        targetList.add(phoneBookItem)
+                    }
+                }
+            }
+        }
+        return targetList
     }
 }
 
@@ -215,5 +381,25 @@ class PhoneDepartItem : Serializable {
         this.pid = pid
         this.level = level
         this.name = name
+    }
+}
+
+class PhoneHistoryItem : Serializable {
+    var id: Long;
+    var phoneBookItemid: Long;
+    var dialType: String; //"未接"， "已接"， "已拨"
+    var name: String;
+    var phone: String;
+    var startTime: String;
+    var dialogTimeLength: String;
+
+    constructor(id: Long, phoneBookItemid: Long, dialType: String, name: String, phone: String, startTime: String, dialogTimeLength: String) {
+        this.id = id
+        this.phoneBookItemid = phoneBookItemid
+        this.dialType = dialType
+        this.name = name
+        this.phone = phone
+        this.startTime = startTime
+        this.dialogTimeLength = dialogTimeLength
     }
 }

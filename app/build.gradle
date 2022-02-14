@@ -11,9 +11,9 @@ android {
         applicationId "com.phone.base"
         minSdkVersion rootProject.min_sdk_version
         targetSdkVersion rootProject.target_sdk_version
-        versionCode 7
-        versionName "1.2.0rc6"
-        archivesBaseName = "STRUT"
+        versionCode 1
+        versionName "1.0.0"
+        archivesBaseName = "phonebook"
 
         buildConfigField("boolean", "isOneOneVer", "false")
 
@@ -64,7 +64,8 @@ def static getTime(variant) {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(path: ':common')
+    api project(path: ':common')
+    api project(path: ':SerialPortLibrary')
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.appcompat:appcompat:1.3.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
@@ -80,5 +81,7 @@ dependencies {
     implementation "org.apache.commons:commons-lang3:$commons_lang_version"
     //for seekbar
     implementation 'com.crystal:crystalrangeseekbar:1.1.3'
+
+    implementation "com.belerweb:pinyin4j:2.5.0"
 
 }

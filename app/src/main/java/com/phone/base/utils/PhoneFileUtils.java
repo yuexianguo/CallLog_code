@@ -1,5 +1,6 @@
 package com.phone.base.utils;
 
+import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
@@ -16,6 +17,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PhoneFileUtils {
     public static final String DIR_NAME = "Download/PhoneTest/";
@@ -56,14 +59,13 @@ public class PhoneFileUtils {
                 }
 
             } catch (Exception e) {
-                //Log.i("copyPrivateToDownload--","fail: " + e.getCause());
+                e.printStackTrace();
             }
         }
 
     }
 
     public static void initPublicFileToAppFile(Context context, String targetPath) {
-//        String filePath = "Download/PhoneTest/";
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
             String queryPathKey = null;
 
@@ -126,7 +128,7 @@ public class PhoneFileUtils {
             }
         } else {
             //android 9以下
-            String stringResult = FileSystem.readString(new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), FILE_NAME));
+            String stringResult = FileSystem.readString(new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), FILE_NAME));
             if (!TextUtils.isEmpty(stringResult)) {
                 FileSystem.writeString(context.getFilesDir(), FILE_NAME, stringResult);
             }
