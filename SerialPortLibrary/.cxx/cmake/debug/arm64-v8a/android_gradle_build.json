@@ -1,0 +1,40 @@
+{
+  "stringTable": {},
+  "buildFiles": [
+    "/Users/apple/Documents/person/code/my_github/serial_port_derry/SerialPortLibrary/src/main/cpp/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/Users/apple/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja",
+      "-C",
+      "/Users/apple/Documents/person/code/my_github/serial_port_derry/SerialPortLibrary/.cxx/cmake/debug/arm64-v8a",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/Users/apple/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja",
+    "-C",
+    "/Users/apple/Documents/person/code/my_github/serial_port_derry/SerialPortLibrary/.cxx/cmake/debug/arm64-v8a",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {
+    "SerialPort-Debug-arm64-v8a": {
+      "buildCommandComponents": [
+        "/Users/apple/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja",
+        "-C",
+        "/Users/apple/Documents/person/code/my_github/serial_port_derry/SerialPortLibrary/.cxx/cmake/debug/arm64-v8a",
+        "SerialPort"
+      ],
+      "buildType": "debug",
+      "abi": "arm64-v8a",
+      "artifactName": "SerialPort",
+      "output": "/Users/apple/Documents/person/code/my_github/serial_port_derry/SerialPortLibrary/build/intermediates/cmake/debug/obj/arm64-v8a/libSerialPort.so",
+      "runtimeFiles": []
+    }
+  },
+  "toolchains": {},
+  "cFileExtensions": [
+    "c"
+  ],
+  "cppFileExtensions": []
+}

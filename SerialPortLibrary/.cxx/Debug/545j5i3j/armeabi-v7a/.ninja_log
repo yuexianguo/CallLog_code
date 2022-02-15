@@ -1,0 +1,4 @@
+# ninja log v5
+0	114	1644250508	CMakeFiles/SerialPort.dir/SerialPort.c.o	c77a82b41e820990
+114	142	1644250508	/Users/apple/Documents/person/code/phone_book_code/SerialPortLibrary/build/intermediates/cxx/Debug/545j5i3j/obj/armeabi-v7a/libSerialPort.so	ffdc650585a922ce
+0	7	0	clean	5c2ee144a0187135

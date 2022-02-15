@@ -1,0 +1,7 @@
+Executable : /Users/apple/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja
+arguments : 
+-C
+/Users/apple/Documents/person/code/phone_book_code/SerialPortLibrary/.cxx/Debug/545j5i3j/armeabi-v7a
+SerialPort
+jvmArgs : 
+

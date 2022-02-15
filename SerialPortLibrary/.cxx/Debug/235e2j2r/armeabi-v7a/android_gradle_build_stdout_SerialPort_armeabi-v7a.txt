@@ -1,0 +1,2 @@
+ninja: Entering directory `/Users/apple/Documents/person/code/CallLog_code/SerialPortLibrary/.cxx/Debug/235e2j2r/armeabi-v7a'
+ninja: no work to do.

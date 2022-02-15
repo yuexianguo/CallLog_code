@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/Users/apple/Documents/person/code/phone_book_code/SerialPortLibrary/.cxx/Debug/545j5i3j/armeabi-v7a",
+  "command": "/Users/apple/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang --target=armv7-none-linux-androideabi17 --gcc-toolchain=/Users/apple/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/apple/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DSerialPort_EXPORTS  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -o CMakeFiles/SerialPort.dir/SerialPort.c.o   -c /Users/apple/Documents/person/code/phone_book_code/SerialPortLibrary/src/main/cpp/SerialPort.c",
+  "file": "/Users/apple/Documents/person/code/phone_book_code/SerialPortLibrary/src/main/cpp/SerialPort.c"
+}
+]

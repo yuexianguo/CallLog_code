@@ -1,0 +1,2 @@
+ninja: Entering directory `/Users/apple/Documents/person/code/my_github/serial_port_derry/SerialPortLibrary/.cxx/cmake/debug/x86'
+ninja: no work to do.
