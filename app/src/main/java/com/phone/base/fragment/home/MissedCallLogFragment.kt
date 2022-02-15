@@ -1,4 +1,4 @@
-package com.phone.base.fragment
+package com.phone.base.fragment.home
 
 import android.content.Context
 import android.os.Bundle
@@ -8,9 +8,9 @@ import com.phone.base.common.BaseFragment
 
 
 private const val REQUEST_CODE_CAMERA_AND_LOCATION = 0x001
-const val TAG_DIALED_CALL_FRAGMENT = "DialedCallLogFragment"
+const val TAG_MISSED_CALL_FRAGMENT = "MissedCallLogFragment"
 
-class DialedCallLogFragment : BaseFragment() {
+class MissedCallLogFragment : BaseFragment() {
 
     private var mMainActivity: MainActivity? = null
 
@@ -20,7 +20,7 @@ class DialedCallLogFragment : BaseFragment() {
     companion object {
         @JvmStatic
         fun newInstance() =
-            DialedCallLogFragment().apply {
+            MissedCallLogFragment().apply {
                 arguments = Bundle().apply {
                 }
             }

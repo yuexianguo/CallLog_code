@@ -14,8 +14,9 @@ import com.phone.base.R
 import com.phone.base.common.BaseActivity
 import com.phone.base.common.BaseApplication.Companion.context
 import com.phone.base.common.utils.ActivityUtils.replaceFragment
-import com.phone.base.fragment.HomeFragment
-import com.phone.base.fragment.TAG_HOME_FRAGMENT
+import com.phone.base.fragment.home.HomeFragment
+import com.phone.base.fragment.home.TAG_HOME_FRAGMENT
+
 import com.phone.base.jobservice.Helpers
 import com.phone.base.manager.PhoneInfoManager
 

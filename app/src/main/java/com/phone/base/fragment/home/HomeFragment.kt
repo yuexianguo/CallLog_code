@@ -1,4 +1,4 @@
-package com.phone.base.fragment
+package com.phone.base.fragment.home
 
 import android.Manifest
 import android.content.*
@@ -15,6 +15,8 @@ import com.phone.base.activity.MainActivity
 import com.phone.base.bean.PhoneBookItem
 import com.phone.base.common.BaseApplication
 import com.phone.base.common.BaseFragment
+import com.phone.base.fragment.AllCallLogFragment
+import com.phone.base.fragment.TAG_ALL_CALL_FRAGMENT
 import com.phone.base.manager.PhoneInfoManager
 import com.phone.base.utils.PhoneFileUtils
 import kotlinx.android.synthetic.main.fragment_home.*

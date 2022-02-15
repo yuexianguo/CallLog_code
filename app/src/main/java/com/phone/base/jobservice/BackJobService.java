@@ -8,7 +8,6 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 
@@ -17,6 +16,7 @@ import com.derry.serialportlibrary.SerialPortFinder;
 import com.derry.serialportlibrary.SerialPortManager;
 import com.derry.serialportlibrary.listener.OnOpenSerialPortListener;
 import com.derry.serialportlibrary.listener.OnSerialPortDataListener;
+import com.phone.base.activity.IncomingCallActivity;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -34,11 +34,11 @@ public class BackJobService extends JobService {
     public static final int ELLISONS_JOB_ID = 0;
     public static final int ELLISONS_JOB_OVERDIDE_DEADLINE = 1000;
     private static final String TAG = T.TAG;
-    private Handler mHandler = new Handler(Looper.getMainLooper());
     private SerialPortManager mSerialPortManager; // 打开串口，关闭串口，发生串口数据 需用的关联类
 
     private OnOpenSerialPortListener openSerialPortListener = null;
     private OnSerialPortDataListener onSerialPortDataListener = null;
+    private boolean isSerialPortOpen = false;
 
     @Override
     public void onCreate() {
@@ -54,10 +54,12 @@ public class BackJobService extends JobService {
 
     @Override
     public boolean onStartJob(JobParameters params) {
+        //服务启动了或者重新启动了
         Log.w(TAG, "BackJobService onStartJob()");
         Helpers.doHardWork(this, params);
-        mHandler.removeCallbacksAndMessages(null);
-        mHandler.postDelayed(mRunnable, 3000L);
+        isSerialPortOpen = false;
+        //服务启动了或者重新启动了，连一次串口
+        serialConect();
         return true;
     }
 
@@ -67,16 +69,15 @@ public class BackJobService extends JobService {
         return true;
     }
 
-    private  Runnable mRunnable = new Runnable() {
-        @Override
-        public void run() {
-            long currentTime = System.currentTimeMillis();
-            //每3秒连一次串口
-            serialConect();
-            mHandler.removeCallbacksAndMessages(null);
-            mHandler.postDelayed(mRunnable, 3000L);
-        }
-    };
+//    private  Runnable mRunnable = new Runnable() {
+//        @Override
+//        public void run() {
+//            long currentTime = System.currentTimeMillis();
+//
+////            mHandler.removeCallbacksAndMessages(null);
+////            mHandler.postDelayed(mRunnable, 3000L);
+//        }
+//    };
 
     private void serialConect() {
         ArrayList<Device> devices = new SerialPortFinder().getDevices();
@@ -126,6 +127,7 @@ public class BackJobService extends JobService {
 //                                showToast(String.format("接收\n%s", new String(finalBytes)));
 //                            showToast(String.format("接收 = %s", hexString));
                             Log.i(T.TAG, "" + String.format(" 接收\n%s", hexString));
+                            IncomingCallActivity.Companion.startIncomingCallFragment(BackJobService.this,hexString);
                         }
                     });
                 }
@@ -151,10 +153,11 @@ public class BackJobService extends JobService {
 
 
         // 打开串口
-        if (targetDevice != null) {
-            boolean openSerialPort = mSerialPortManager.setOnOpenSerialPortListener(openSerialPortListener)
+        if (targetDevice != null && !isSerialPortOpen) {
+            // 串口设备文件，波特率
+            isSerialPortOpen = mSerialPortManager.setOnOpenSerialPortListener(openSerialPortListener)
                     .setOnSerialPortDataListener(onSerialPortDataListener)
-                    .openSerialPort(targetDevice.getFile(), 115200); // 串口设备文件，波特率
+                    .openSerialPort(targetDevice.getFile(), 115200);
         }
     }
 

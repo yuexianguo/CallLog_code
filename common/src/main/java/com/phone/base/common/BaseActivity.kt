@@ -23,6 +23,7 @@ import com.phone.base.common.utils.LogUtil
 import com.phone.base.common.utils.NetUtils
 import com.phone.base.common.utils.OnClickUtils
 import com.phone.base.common.utils.StatusBarUtil
+import kotlinx.android.synthetic.main.common_activity_base.*
 
 private const val TAG_BASE_MSG_DIALOG = "BaseMsgDialogFragment"
 
@@ -227,6 +228,10 @@ abstract class BaseActivity : AppCompatActivity(), OperationCallback, BaseView {
      */
     fun setToolbarTitle(title: String?, isLeft: Boolean) {
         setToolbarTitle(title, isLeft, false, null)
+    }
+
+    fun hideLogo() {
+        iv_base_logo?.visibility = View.GONE
     }
 
     /**

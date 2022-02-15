@@ -229,6 +229,35 @@ class PhoneBookInfo : Serializable {
         return targetList
     }
 
+    fun foundUserByCertainNumber(number: String): PhoneBookItem? {
+        var targetPhoneBookItem: PhoneBookItem? = null
+        if (number.isNotEmpty()) {
+            if (phoneList.isNotEmpty()) {
+                for (phoneBookItem in phoneList) {
+                    if (phoneBookItem.extension1.isNotEmpty()) {
+                        if (phoneBookItem.extension1 == number) {
+                            return phoneBookItem
+                        }
+                    } else if (phoneBookItem.extension2.isNotEmpty()) {
+                        if (phoneBookItem.extension2 == number) {
+                            return phoneBookItem
+                        }
+                    } else if (phoneBookItem.phone1.isNotEmpty()) {
+                        if (phoneBookItem.phone1 == number) {
+                            return phoneBookItem
+                        }
+                    } else if (phoneBookItem.phone2.isNotEmpty()) {
+                        if (phoneBookItem.phone2 == number) {
+                            return phoneBookItem
+                        }
+                    }
+                }
+            }
+        }
+
+        return targetPhoneBookItem
+    }
+
     fun foundPhoneBySimpleNameOrNum(foundString: String): ArrayList<PhoneBookItem> {
         var targetList: ArrayList<PhoneBookItem> = arrayListOf()
         if (phoneList.isNotEmpty()) {
