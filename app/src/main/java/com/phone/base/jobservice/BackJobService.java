@@ -50,6 +50,10 @@ public class BackJobService extends JobService {
     public void onDestroy() {
         super.onDestroy();
         Log.w(TAG, "BackJobService destroyed.");
+        if (mSerialPortManager != null) {
+            mSerialPortManager.closeSerialPort();
+        }
+
     }
 
     @Override
@@ -153,7 +157,7 @@ public class BackJobService extends JobService {
 
 
         // 打开串口
-        if (targetDevice != null && !isSerialPortOpen) {
+        if (targetDevice != null && targetDevice.getFile() != null && !isSerialPortOpen) {
             // 串口设备文件，波特率
             isSerialPortOpen = mSerialPortManager.setOnOpenSerialPortListener(openSerialPortListener)
                     .setOnSerialPortDataListener(onSerialPortDataListener)
