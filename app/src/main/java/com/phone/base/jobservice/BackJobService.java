@@ -7,6 +7,7 @@ import android.app.job.JobService;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
+import android.text.TextUtils;
 import android.util.Log;
 
 import androidx.annotation.RequiresApi;
@@ -31,36 +32,43 @@ import java.util.Arrays;
  */
 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 public class BackJobService extends JobService {
-    public static final int ELLISONS_JOB_ID = 0;
+    public static final int ELLISONS_JOB_ID = 2;
     public static final int ELLISONS_JOB_OVERDIDE_DEADLINE = 1000;
     private static final String TAG = T.TAG;
-    private SerialPortManager mSerialPortManager; // 打开串口，关闭串口，发生串口数据 需用的关联类
+//    private SerialPortManager mSerialPortManager; // 打开串口，关闭串口，发生串口数据 需用的关联类
 
     private OnOpenSerialPortListener openSerialPortListener = null;
     private OnSerialPortDataListener onSerialPortDataListener = null;
     private boolean isSerialPortOpen = false;
-
+    private Handler mHandler = new Handler(Looper.getMainLooper());
+    private boolean isOnStop = false;
     @Override
     public void onCreate() {
         super.onCreate();
+        //初始化单例
+        SerialPortManager.getInstance();
         Log.w(TAG, "BackJobService onCreate()");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onDestroy() {
         super.onDestroy();
         Log.w(TAG, "BackJobService destroyed.");
-        if (mSerialPortManager != null) {
-            mSerialPortManager.closeSerialPort();
+        if (SerialPortManager.getInstance() != null) {
+            SerialPortManager.getInstance().closeSerialPort();
         }
-
+//        Helpers.schedule(BackJobService.this);
     }
 
     @Override
     public boolean onStartJob(JobParameters params) {
+        Helpers.doHardWork(this, params);
         //服务启动了或者重新启动了
         Log.w(TAG, "BackJobService onStartJob()");
-        Helpers.doHardWork(this, params);
+        mHandler.removeCallbacksAndMessages(null);
+        mHandler.postDelayed(mRunnable, 3000L);
+//        Helpers.doHardWork(this, params);
         isSerialPortOpen = false;
         //服务启动了或者重新启动了，连一次串口
         serialConect();
@@ -69,19 +77,26 @@ public class BackJobService extends JobService {
 
     @Override
     public boolean onStopJob(JobParameters params) {
+        isOnStop = true;
         Log.w(TAG, "BackJobService stopped & wait to restart params:" + params);
         return true;
     }
 
-//    private  Runnable mRunnable = new Runnable() {
-//        @Override
-//        public void run() {
-//            long currentTime = System.currentTimeMillis();
-//
-////            mHandler.removeCallbacksAndMessages(null);
-////            mHandler.postDelayed(mRunnable, 3000L);
-//        }
-//    };
+    private  Runnable mRunnable = new Runnable() {
+        @Override
+        public void run() {
+            if (isOnStop) {
+                Log.d(T.TAG,"mRunnable isOndestroy ="+ isOnStop);
+                isSerialPortOpen = false;
+                //服务启动了或者重新启动了，连一次串口
+                serialConect();
+                isOnStop = false;
+            }
+            Log.d(T.TAG,"mRunnable ="+System.currentTimeMillis());
+            mHandler.removeCallbacksAndMessages(null);
+            mHandler.postDelayed(mRunnable, 3000L);
+        }
+    };
 
     private void serialConect() {
         ArrayList<Device> devices = new SerialPortFinder().getDevices();
@@ -91,9 +106,7 @@ public class BackJobService extends JobService {
                 targetDevice = device;
             }
         }
-        if (mSerialPortManager == null) {
-            mSerialPortManager = new SerialPortManager();
-        }
+
 
         if (openSerialPortListener == null) {
             openSerialPortListener = new OnOpenSerialPortListener() {
@@ -122,7 +135,7 @@ public class BackJobService extends JobService {
                 @Override
                 public void onDataReceived(byte[] bytes) { // 接收到串口数据的监听函数
                     Log.i(T.TAG, " onDataReceived [ byte[] ]: " + Arrays.toString(bytes));
-                    Log.i(T.TAG, " onDataReceived [ String ]: " + new String(bytes));
+                    Log.i(T.TAG, " onDataReceived [ String ]: " + new String(bytes)); //装换为ASCII字符
                     final byte[] finalBytes = bytes;
                     runOnUiThread(new Runnable() {
                         @Override
@@ -131,6 +144,11 @@ public class BackJobService extends JobService {
 //                                showToast(String.format("接收\n%s", new String(finalBytes)));
 //                            showToast(String.format("接收 = %s", hexString));
                             Log.i(T.TAG, "" + String.format(" 接收\n%s", hexString));
+                            String receiveString = new String(bytes);
+                            //来电 "AT"+MODE+Len+Time+Number+"\r\n" :
+                            if (!TextUtils.isEmpty(receiveString) && receiveString.length() >=8 && receiveString.startsWith("AT")) {
+//                                if (receiveString.substring())
+                            }
                             IncomingCallActivity.Companion.startIncomingCallFragment(BackJobService.this,hexString);
                         }
                     });
@@ -159,7 +177,7 @@ public class BackJobService extends JobService {
         // 打开串口
         if (targetDevice != null && targetDevice.getFile() != null && !isSerialPortOpen) {
             // 串口设备文件，波特率
-            isSerialPortOpen = mSerialPortManager.setOnOpenSerialPortListener(openSerialPortListener)
+            isSerialPortOpen = SerialPortManager.getInstance().setOnOpenSerialPortListener(openSerialPortListener)
                     .setOnSerialPortDataListener(onSerialPortDataListener)
                     .openSerialPort(targetDevice.getFile(), 115200);
         }

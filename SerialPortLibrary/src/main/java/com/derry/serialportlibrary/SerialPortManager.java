@@ -24,6 +24,19 @@ import java.io.IOException;
  * 发送串口数据 - sendBytes(byte[] sendBytes)
  */
 public class SerialPortManager extends SerialPort {
+    private static volatile SerialPortManager INSTANCE;
+
+    public static SerialPortManager getInstance() {
+        if (INSTANCE == null) {
+            synchronized (SerialPortManager.class) {
+                if (INSTANCE == null) {
+                    INSTANCE = new SerialPortManager();
+                }
+            }
+        }
+        return INSTANCE;
+    }
+
     // private static final String TAG = SerialPortManager.class.getSimpleName();
     private FileInputStream mFileInputStream; // 读取的流 绑定了 (mFd文件句柄)
     private FileOutputStream mFileOutputStream; // 写入的流 绑定了 (mFd文件句柄)
@@ -37,8 +50,9 @@ public class SerialPortManager extends SerialPort {
 
     /**
      * 打开串口
-     * @param device    串口设备文件-串口文件的路径
-     * @param baudRate  波特率-（相当于：Android系统设备层 与 硬件层 通讯所共识的频率）
+     *
+     * @param device   串口设备文件-串口文件的路径
+     * @param baudRate 波特率-（相当于：Android系统设备层 与 硬件层 通讯所共识的频率）
      * @return 打开串口是否成功
      */
     public boolean openSerialPort(File device, int baudRate) {
@@ -70,6 +84,7 @@ public class SerialPortManager extends SerialPort {
             return true; // 【3】
         } catch (Exception e) {
             e.printStackTrace();
+            Log.d(T.TAG, "openSerialPort error=" + e.getMessage());
             if (null != mOnOpenSerialPortListener) {
                 mOnOpenSerialPortListener.onFail(device, OnOpenSerialPortListener.Status.OPEN_FAIL);
             }
@@ -111,6 +126,7 @@ public class SerialPortManager extends SerialPort {
 
     /**
      * 添加打开串口监听
+     *
      * @param listener listener
      * @return SerialPortManager
      */
@@ -121,6 +137,7 @@ public class SerialPortManager extends SerialPort {
 
     /**
      * 添加数据通信监听
+     *
      * @param listener listener
      * @return SerialPortManager
      */
@@ -133,13 +150,18 @@ public class SerialPortManager extends SerialPort {
      * 打开串口 - 调用 - 开启发送消息的线程
      */
     private void startSendThread() {
+        stopSendThread();
         // 开启发送消息的线程
         if (mSendingHandlerThread == null) {
             mSendingHandlerThread = new HandlerThread("mSendingHandlerThread");
         }
-        if (mSendingHandlerThread.isInterrupted() || !mSendingHandlerThread.isAlive()) {
+        Thread.State state = mSendingHandlerThread.getState();
+        Log.d(T.TAG,"mSendingHandlerThread state ="+state);
+        if (state == Thread.State.NEW) {
+            Log.d(T.TAG,"mSendingHandlerThread state =new ...");
             mSendingHandlerThread.start();
         }
+
         // Handler
         if (mSendingHandler == null) {
             mSendingHandler = new Handler(mSendingHandlerThread.getLooper()) {
@@ -179,6 +201,7 @@ public class SerialPortManager extends SerialPort {
      * 打开串口 - 调用 - 开启接收消息的线程
      */
     private void startReadThread() {
+        stopReadThread();
         if (mSerialPortReadThread == null) {
             mSerialPortReadThread = new SerialPortReadThread(mFileInputStream) {
                 @Override
@@ -189,7 +212,10 @@ public class SerialPortManager extends SerialPort {
                 }
             };
         }
-        if (!mSerialPortReadThread.isAlive() || mSerialPortReadThread.isInterrupted()) {
+        Thread.State state = mSerialPortReadThread.getState();
+        Log.d(T.TAG,"mSerialPortReadThread state ="+state);
+        if (state == Thread.State.NEW) {
+            Log.d(T.TAG,"mSerialPortReadThread state =new ...");
             mSerialPortReadThread.start();
         }
     }
@@ -200,11 +226,13 @@ public class SerialPortManager extends SerialPort {
     private void stopReadThread() {
         if (null != mSerialPortReadThread) {
             mSerialPortReadThread.release();
+            mSerialPortReadThread = null; // 后置为null
         }
     }
 
     /**
      * 布局上的按钮点击事件 - 调用 - 发送串口数据
+     *
      * @param sendBytes 发送数据
      * @return 发送是否成功
      */

@@ -30,12 +30,15 @@ class MainActivity : BaseActivity() {
 
     override val layoutId: Int
         get() = R.layout.activity_main
-
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (savedInstanceState == null) {
             startHomeFragment(false)
         }
+        //开启后台服务
+//        Helpers.cancelJob(this)
+        Helpers.schedule(this)
     }
 
     override fun initViews() {
@@ -72,12 +75,11 @@ class MainActivity : BaseActivity() {
         replaceFragment(HomeFragment.newInstance(), addToStack, TAG_HOME_FRAGMENT, true)
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
+
     override fun onResume() {
         super.onResume()
         mIsActive = true
-        //开启后台服务
-        Helpers.schedule(this)
+
     }
 
     override fun onStop() {
