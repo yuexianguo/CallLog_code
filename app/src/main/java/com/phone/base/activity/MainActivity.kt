@@ -1,24 +1,19 @@
 package com.phone.base.activity
 
-import android.Manifest
 import android.content.DialogInterface
-import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.annotation.RequiresApi
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.derry.serialportlibrary.SerialPortManager
 import com.phone.base.R
 import com.phone.base.common.BaseActivity
-import com.phone.base.common.BaseApplication.Companion.context
 import com.phone.base.common.utils.ActivityUtils.replaceFragment
 import com.phone.base.fragment.home.HomeFragment
 import com.phone.base.fragment.home.TAG_HOME_FRAGMENT
-
 import com.phone.base.jobservice.Helpers
-import com.phone.base.manager.PhoneInfoManager
+
 
 class MainActivity : BaseActivity() {
     private var mIsActive = false
@@ -37,13 +32,14 @@ class MainActivity : BaseActivity() {
             startHomeFragment(false)
         }
         //开启后台服务
-//        Helpers.cancelJob(this)
         Helpers.schedule(this)
+        lifecycle.addObserver(SerialPortManager.getInstance())
     }
 
     override fun initViews() {
         findViewById<View>(android.R.id.list)
-        android.R.layout.simple_selectable_list_item
+
+
     }
 
 
