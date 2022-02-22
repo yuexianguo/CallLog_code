@@ -37,6 +37,7 @@ class MainActivity : BaseActivity() {
     }
 
     override fun initViews() {
+        this.hideBaseAppbar()
         findViewById<View>(android.R.id.list)
 
 

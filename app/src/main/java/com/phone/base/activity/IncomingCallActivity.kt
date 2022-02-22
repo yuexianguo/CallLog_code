@@ -39,16 +39,12 @@ class IncomingCallActivity : BaseActivity() {
 
     override fun initViews() {
         LogUtil.d(T.TAG, "initViews")
+        this.hideBaseAppbar()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        window.addFlags(
-//            WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON //保持屏幕常亮
-//                    or WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED //在锁屏情况下也可以显示屏幕
-//                    or WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON
-//        ) //启动Activity的时候点亮屏幕
-        if (savedInstanceState == null) {
+//        if (savedInstanceState == null) {
             LogUtil.d(T.TAG, "onCreate")
             window.addFlags(
                 WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON //保持屏幕常亮
@@ -56,7 +52,7 @@ class IncomingCallActivity : BaseActivity() {
                         or WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON
             ) //启动Activity的时候点亮屏幕
             startTarget()
-        }
+//        }
     }
 
     override fun onNewIntent(intent: Intent?) {

@@ -18,6 +18,8 @@ import com.derry.serialportlibrary.SerialPortManager;
 import com.derry.serialportlibrary.listener.OnOpenSerialPortListener;
 import com.derry.serialportlibrary.listener.OnSerialPortDataListener;
 import com.phone.base.activity.IncomingCallActivity;
+import com.phone.base.common.utils.RxBus;
+import com.phone.base.rxevent.IncomeCallEvent;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -42,6 +44,7 @@ public class BackJobService extends JobService {
     private boolean isSerialPortOpen = false;
     private Handler mHandler = new Handler(Looper.getMainLooper());
     private boolean isOnStop = false;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -82,17 +85,17 @@ public class BackJobService extends JobService {
         return true;
     }
 
-    private  Runnable mRunnable = new Runnable() {
+    private Runnable mRunnable = new Runnable() {
         @Override
         public void run() {
             if (isOnStop) {
-                Log.d(T.TAG,"mRunnable isOndestroy ="+ isOnStop);
+                Log.d(T.TAG, "mRunnable isOndestroy =" + isOnStop);
                 isSerialPortOpen = false;
                 //服务启动了或者重新启动了，连一次串口
                 serialConect();
                 isOnStop = false;
             }
-            Log.d(T.TAG,"mRunnable ="+System.currentTimeMillis());
+            Log.d(T.TAG, "mRunnable =" + System.currentTimeMillis());
             mHandler.removeCallbacksAndMessages(null);
             mHandler.postDelayed(mRunnable, 3000L);
         }
@@ -119,11 +122,11 @@ public class BackJobService extends JobService {
                 public void onFail(File device, OnOpenSerialPortListener.Status status) {
                     switch (status) {
                         case NO_READ_WRITE_PERMISSION:
-                            Log.i(T.TAG,device.getPath()+", 没有读写权限");
+                            Log.i(T.TAG, device.getPath() + ", 没有读写权限");
                             break;
                         case OPEN_FAIL:
                         default:
-                            Log.i(T.TAG,device.getPath()+", 串口打开失败");
+                            Log.i(T.TAG, device.getPath() + ", 串口打开失败");
                             break;
                     }
                 }
@@ -146,10 +149,19 @@ public class BackJobService extends JobService {
                             Log.i(T.TAG, "" + String.format(" 接收\n%s", hexString));
                             String receiveString = new String(bytes);
                             //来电 "AT"+MODE+Len+Time+Number+"\r\n" :
-                            if (!TextUtils.isEmpty(receiveString) && receiveString.length() >=8 && receiveString.startsWith("AT")) {
-//                                if (receiveString.substring())
+                            if (!TextUtils.isEmpty(receiveString) && receiveString.startsWith("AT")) {
+                                if (receiveString.length() >= 12 && receiveString.startsWith("4",3)) {
+                                    //区号来电
+                                    IncomingCallActivity.Companion.startIncomingCallFragment(BackJobService.this, receiveString.substring(8,12));
+                                } else if (receiveString.length() >= 20 && receiveString.startsWith("11",3)) {
+                                    //长号来电
+                                    IncomingCallActivity.Companion.startIncomingCallFragment(BackJobService.this, receiveString.substring(9,20));
+                                }
                             }
-                            IncomingCallActivity.Companion.startIncomingCallFragment(BackJobService.this,hexString);
+                            if (!TextUtils.isEmpty(receiveString) && receiveString.startsWith("AAA")){
+                                //模拟接听
+                                RxBus.INSTANCE.post(new IncomeCallEvent(""));
+                            }
                         }
                     });
                 }
