@@ -58,7 +58,6 @@ class IncomingCallActivity : BaseActivity() {
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
         LogUtil.d(T.TAG, "onNewIntent")
-        startTarget()
     }
 
     private fun showDialingPage(phoneNum: String) {

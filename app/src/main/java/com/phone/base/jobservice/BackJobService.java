@@ -1,7 +1,5 @@
 package com.phone.base.jobservice;
 
-import static com.amazonaws.mobile.auth.core.internal.util.ThreadUtils.runOnUiThread;
-
 import android.app.job.JobParameters;
 import android.app.job.JobService;
 import android.os.Build;
@@ -19,7 +17,9 @@ import com.derry.serialportlibrary.listener.OnOpenSerialPortListener;
 import com.derry.serialportlibrary.listener.OnSerialPortDataListener;
 import com.phone.base.activity.IncomingCallActivity;
 import com.phone.base.common.utils.RxBus;
+import com.phone.base.rxevent.HangUpCallEvent;
 import com.phone.base.rxevent.IncomeCallEvent;
+import com.phone.base.utils.ThreadUtils;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -82,7 +82,7 @@ public class BackJobService extends JobService {
     public boolean onStopJob(JobParameters params) {
         isOnStop = true;
         Log.w(TAG, "BackJobService stopped & wait to restart params:" + params);
-        return true;
+        return true;//返回TRUE才能进程死了还能自启动服务
     }
 
     private Runnable mRunnable = new Runnable() {
@@ -140,7 +140,7 @@ public class BackJobService extends JobService {
                     Log.i(T.TAG, " onDataReceived [ byte[] ]: " + Arrays.toString(bytes));
                     Log.i(T.TAG, " onDataReceived [ String ]: " + new String(bytes)); //装换为ASCII字符
                     final byte[] finalBytes = bytes;
-                    runOnUiThread(new Runnable() {
+                    ThreadUtils.INSTANCE.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             String hexString = ArraysUtils.bytesToHexString(finalBytes);
@@ -159,9 +159,14 @@ public class BackJobService extends JobService {
                                 }
                             }
                             if (!TextUtils.isEmpty(receiveString) && receiveString.startsWith("AAA")){
-                                //模拟接听
+                                //模拟自己接听
                                 RxBus.INSTANCE.post(new IncomeCallEvent(""));
                             }
+                            if (!TextUtils.isEmpty(receiveString) && receiveString.startsWith("BBB")){
+                                //模拟对方挂断
+                                RxBus.INSTANCE.post(new HangUpCallEvent(""));
+                            }
+
                         }
                     });
                 }
@@ -175,7 +180,7 @@ public class BackJobService extends JobService {
                     Log.i(T.TAG, " onDataSent [ byte[] ]: " + Arrays.toString(bytes)); // onDataSent [ byte[] ]: [97] 【发送2】
                     Log.i(com.derry.serialportlibrary.T.TAG, " onDataSent [ String ]: " + new String(bytes)); // onDataSent [ String ]: a
                     final byte[] finalBytes = bytes;
-                    runOnUiThread(new Runnable() {
+                    ThreadUtils.INSTANCE.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             Log.i(T.TAG, String.format("发送\n%s", new String(finalBytes)));

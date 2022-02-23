@@ -17,6 +17,7 @@ import androidx.appcompat.app.AlertDialog
 import com.derry.serialportlibrary.T
 import com.phone.base.R
 import com.phone.base.activity.IncomingCallActivity
+import com.phone.base.bean.DIAL_TYPE_MISSED_CALL
 import com.phone.base.bean.DIAL_TYPE_RECEIVED_CALL
 import com.phone.base.bean.PhoneBookItem
 import com.phone.base.bean.PhoneHistoryItem
@@ -25,6 +26,7 @@ import com.phone.base.common.listener.OnSingleClickListener
 import com.phone.base.common.utils.LogUtil
 import com.phone.base.common.utils.RxBus
 import com.phone.base.manager.PhoneInfoManager
+import com.phone.base.rxevent.HangUpCallEvent
 import com.phone.base.rxevent.IncomeCallEvent
 import com.phone.base.utils.DialTimeUtils
 import io.reactivex.disposables.Disposable
@@ -41,7 +43,8 @@ class IncomingCallFragment : BaseDialogFragment() {
     private lateinit var tv_incoming_call_person_name: TextView
     private lateinit var tv_incoming_call_work: TextView
     private lateinit var incoming_call_right_layout: LinearLayout
-    private var mDisposableCallEvent: Disposable? = null
+    private var mDisposableIncomeCallEvent: Disposable? = null
+    private var mDisposableHangUpCallEvent: Disposable? = null
     private var mHandler: Handler = Handler(Looper.getMainLooper())
     private var mDialSeconds: Int = 0
     private var mDialMinutes: Int = 0
@@ -57,6 +60,7 @@ class IncomingCallFragment : BaseDialogFragment() {
     private lateinit var bt_incoming_call_out: Button
     private var mStartDialTime: String = ""
     private var phoneBookItem: PhoneBookItem? = null
+    private var isReceiveCall: Boolean = false
 
     companion object {
         private const val ARG_PHONENUM = "arg_phonenum"
@@ -130,19 +134,27 @@ class IncomingCallFragment : BaseDialogFragment() {
     }
 
     private fun initData() {
+        mStartDialTime = DialTimeUtils.getCurrentTimeByFormat()
+        Log.d(T.TAG, "mStartDialTime =$mStartDialTime")
         val fragment = this
-        mDisposableCallEvent = RxBus.toObservable(IncomeCallEvent::class.java).subscribe {
-            LogUtil.d(T.TAG, "mDisposableCallEvent context=$context, isAdded =$isAdded")
-//            if (context != null && isAdded) {
-            fragment?.incoming_call_right_layout?.visibility = View.VISIBLE
-            startDialTimeRecord()
-//            }
+        mDisposableIncomeCallEvent = RxBus.toObservable(IncomeCallEvent::class.java).subscribe {
+            LogUtil.d(T.TAG, "mDisposableCallEvent  IncomeCallEvent context=$context, isAdded =$isAdded")
+            if (context != null) {
+                isReceiveCall = true
+                fragment?.incoming_call_right_layout?.visibility = View.VISIBLE
+                startDialTimeRecord()
+            }
+        }
+
+        mDisposableHangUpCallEvent = RxBus.toObservable(HangUpCallEvent::class.java).subscribe {
+            LogUtil.d(T.TAG, "mDisposableCallEvent HangUpCallEvent context=$context, isAdded =$isAdded")
+            if (context != null) {
+                mActivity?.onBackPressed()
+            }
         }
     }
 
     private fun startDialTimeRecord() {
-        mStartDialTime = DialTimeUtils.getCurrentTimeByFormat()
-        Log.d(T.TAG,"mStartDialTime =$mStartDialTime")
         mHandler.removeCallbacks(mDialTimeRunnable)
         mHandler.postDelayed(mDialTimeRunnable, 1000L)
     }
@@ -173,16 +185,34 @@ class IncomingCallFragment : BaseDialogFragment() {
 
     override fun onDestroy() {
         super.onDestroy()
+        LogUtil.d(T.TAG,"incoming call fragment onDestroy")
         savingIncomingTime(phoneBookItem)
         mHandler.removeCallbacks(mDialTimeRunnable)
+        mDisposableHangUpCallEvent?.dispose()
+        mDisposableIncomeCallEvent?.dispose()
         mActivity?.finish()
     }
 
     private fun savingIncomingTime(phoneBookItem: PhoneBookItem?) {
         var phonebookId = phoneBookItem?.id ?: 0L
         var phonebookName = phoneBookItem?.name ?: ""
-        PhoneInfoManager.instance.phoneInfo.insertPhoneHistoryItem(PhoneHistoryItem(PhoneInfoManager.instance.phoneInfo.generatePhoneHistoryItemId(), phonebookId,
-                DIAL_TYPE_RECEIVED_CALL, phonebookName, mPhoneNum, mStartDialTime,String.format("%02d:%02d:%02d",mDialHours,mDialMinutes,mDialSeconds)))
+        if (isReceiveCall) {
+            //已接
+            PhoneInfoManager.instance.phoneInfo.insertPhoneHistoryItem(
+                PhoneHistoryItem(
+                    PhoneInfoManager.instance.phoneInfo.generatePhoneHistoryItemId(), phonebookId,
+                    DIAL_TYPE_RECEIVED_CALL, phonebookName, mPhoneNum, mStartDialTime, String.format("%02d:%02d:%02d", mDialHours, mDialMinutes, mDialSeconds)
+                )
+            )
+        } else {
+            //未接
+            PhoneInfoManager.instance.phoneInfo.insertPhoneHistoryItem(
+                PhoneHistoryItem(
+                    PhoneInfoManager.instance.phoneInfo.generatePhoneHistoryItemId(), phonebookId,
+                    DIAL_TYPE_MISSED_CALL, phonebookName, mPhoneNum, mStartDialTime, "00:00:00"
+                )
+            )
+        }
         PhoneInfoManager.instance.phoneInfo.saveOrUpdate(requireContext())
     }
 

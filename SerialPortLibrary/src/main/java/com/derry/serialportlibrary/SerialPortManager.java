@@ -3,14 +3,7 @@ package com.derry.serialportlibrary;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Message;
-import android.provider.SyncStateContract;
 import android.util.Log;
-
-import androidx.annotation.NonNull;
-import androidx.lifecycle.DefaultLifecycleObserver;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.OnLifecycleEvent;
-
 import com.derry.serialportlibrary.listener.OnOpenSerialPortListener;
 import com.derry.serialportlibrary.listener.OnSerialPortDataListener;
 import com.derry.serialportlibrary.thread.SerialPortReadThread;
@@ -31,7 +24,7 @@ import io.reactivex.observers.DefaultObserver;
  * 添加数据通信监听 - setOnSerialPortDataListener(发送串口数据，接收串口数据)
  * 发送串口数据 - sendBytes(byte[] sendBytes)
  */
-public class SerialPortManager extends SerialPort implements DefaultLifecycleObserver {
+public class SerialPortManager extends SerialPort {
     private static volatile SerialPortManager INSTANCE;
 
     public static SerialPortManager getInstance() {
@@ -55,12 +48,6 @@ public class SerialPortManager extends SerialPort implements DefaultLifecycleObs
     private HandlerThread mSendingHandlerThread; // 开启发送消息的线程
     private Handler mSendingHandler; // 发送串口数据的Handler
     private SerialPortReadThread mSerialPortReadThread; // 接收消息的线程
-
-
-    @Override
-    public void onDestroy(@NonNull LifecycleOwner owner) {
-        Log.d(T.TAG,"SerialPortManager MainActivity destroy");
-    }
 
 
     /**

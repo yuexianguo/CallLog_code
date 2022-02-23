@@ -33,7 +33,6 @@ class MainActivity : BaseActivity() {
         }
         //开启后台服务
         Helpers.schedule(this)
-        lifecycle.addObserver(SerialPortManager.getInstance())
     }
 
     override fun initViews() {

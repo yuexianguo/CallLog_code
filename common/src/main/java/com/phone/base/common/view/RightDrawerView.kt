@@ -14,14 +14,8 @@ import com.phone.base.common.BaseActivity
 import com.phone.base.common.Intents
 import com.phone.base.common.R
 import com.phone.base.common.listener.OnSingleClickListener
-import com.phone.base.common.manager.BrainManager
 
-/**
- * description ：
- * author :
- * email : @waclighting.com.cn
- * date : 2020/9/28
- */
+
 class RightDrawerView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : ConstraintLayout(context, attrs, defStyleAttr) {
 
     init {
@@ -51,10 +45,6 @@ class RightDrawerView(context: Context, attrs: AttributeSet?, defStyleAttr: Int)
                     if (context is BaseActivity) {
                         context.closeLeftDrawerLayout()
                         context.closeRightDrawerLayout()
-                        if (BrainManager.deviceObject == null) {
-                            context.toastMsg(context.getString(R.string.common_no_brain_msg_add_one_cpu), false)
-                            return
-                        }
                     }
                     context.startActivity(Intent().apply {
                         action = Intents.ACTION_MENU_START_GROUPS
@@ -67,10 +57,6 @@ class RightDrawerView(context: Context, attrs: AttributeSet?, defStyleAttr: Int)
                     if (context is BaseActivity) {
                         context.closeLeftDrawerLayout()
                         context.closeRightDrawerLayout()
-                        if (BrainManager.deviceObject == null) {
-                            context.toastMsg(context.getString(R.string.common_no_brain_msg_add_one_cpu), false)
-                            return
-                        }
                     }
                     context.startActivity(Intent().apply {
                         action = Intents.ACTION_MENU_START_AUTOMATION
@@ -83,10 +69,6 @@ class RightDrawerView(context: Context, attrs: AttributeSet?, defStyleAttr: Int)
                     if (context is BaseActivity) {
                         context.closeLeftDrawerLayout()
                         context.closeRightDrawerLayout()
-                        if (BrainManager.deviceObject == null) {
-                            context.toastMsg(context.getString(R.string.common_no_brain_msg_add_one_cpu), false)
-                            return
-                        }
                         context.startActivity(Intent().apply {
                             action = Intents.ACTION_MENU_START_SCHEDULES
                         })

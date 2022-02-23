@@ -53,29 +53,6 @@ dependencies {
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     api "androidx.core:core-ktx:$x_core_ktx"
 
-    //amplify start
-//    api "com.amazonaws:aws-android-sdk-lambda:$aws_version"
-//    api "com.amplifyframework:aws-auth-cognito:1.4.2"
-//    api "com.amplifyframework:aws-storage-s3:1.4.2"
-    //amplify end
-
-//    api 'com.amazonaws:aws-android-sdk-s3:2.19.1'
-
-    //mobile client start
-    api "com.amazonaws:aws-android-sdk-lambda:$aws_version"
-    //For AWSMobileClient only:
-    api "com.amazonaws:aws-android-sdk-mobile-client:$aws_version"
-    //For the drop-in UI also:
-    api "com.amazonaws:aws-android-sdk-auth-userpools:$aws_version"
-    api "com.amazonaws:aws-android-sdk-auth-ui:$aws_version"
-    //For hosted UI also:
-    api "com.amazonaws:aws-android-sdk-cognitoauth:$aws_version"
-    //for upload file to aws
-    api "com.amazonaws:aws-android-sdk-s3:$aws_version"
-
-    //mobile client end
-    //mqtt sdk
-    api "com.amazonaws:aws-android-sdk-iot:$aws_version"
     //network
     api "com.squareup.okhttp3:okhttp:$okhttp_version"
     api "com.android.volley:volley:$volley_version"
@@ -119,7 +96,5 @@ dependencies {
     // Support for Java 8 features
     // coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.0.10'
 
-
-    api 'androidx.lifecycle:lifecycle-common-java8:2.2.0'
 
 }

@@ -3,12 +3,6 @@ package com.phone.base.common.data.source
 import androidx.annotation.StringDef
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 
-/**
- * description ：
- * author :
- * email : @waclighting.com.cn
- * date : 2020/4/23
- */
 
 const val URI_FIXTURE = "fixture"
 const val URI_GROUP = "group"
