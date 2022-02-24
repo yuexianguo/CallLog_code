@@ -84,8 +84,7 @@ class HomeFragment : BaseFragment() {
 
         tab_home.getTabAt(mCurrentIndex)?.select()
         selectedIndex(mCurrentIndex)
-        mMainActivity?.hideAppbar()
-        mMainActivity?.hideToolbar()
+
 
     }
 

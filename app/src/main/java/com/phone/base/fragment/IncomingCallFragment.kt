@@ -179,8 +179,7 @@ class IncomingCallFragment : BaseDialogFragment() {
 
 
     private fun initToolbar() {
-        mActivity?.hideLogo()
-//        setToolbarTitle("拨号", true)
+
     }
 
     override fun onDestroy() {
