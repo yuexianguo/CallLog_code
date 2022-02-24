@@ -137,16 +137,16 @@ public class BackJobService extends JobService {
             onSerialPortDataListener = new OnSerialPortDataListener() {
                 @Override
                 public void onDataReceived(byte[] bytes) { // 接收到串口数据的监听函数
-                    Log.i(T.TAG, " onDataReceived [ byte[] ]: " + Arrays.toString(bytes));
+//                    Log.i(T.TAG, " onDataReceived [ byte[] ]: " + Arrays.toString(bytes));
                     Log.i(T.TAG, " onDataReceived [ String ]: " + new String(bytes)); //装换为ASCII字符
-                    final byte[] finalBytes = bytes;
+//                    final byte[] finalBytes = bytes;
                     ThreadUtils.INSTANCE.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            String hexString = ArraysUtils.bytesToHexString(finalBytes);
+//                            String hexString = ArraysUtils.bytesToHexString(finalBytes);
 //                                showToast(String.format("接收\n%s", new String(finalBytes)));
 //                            showToast(String.format("接收 = %s", hexString));
-                            Log.i(T.TAG, "" + String.format(" 接收\n%s", hexString));
+//                            Log.i(T.TAG, "" + String.format(" 接收\n%s", hexString));
                             String receiveString = new String(bytes);
                             //来电 "AT"+MODE+Len+Time+Number+"\r\n" :
                             if (!TextUtils.isEmpty(receiveString) && receiveString.startsWith("AT")) {

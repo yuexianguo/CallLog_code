@@ -49,7 +49,6 @@
             android:exported="true"
             android:excludeFromRecents="true"
             android:windowSoftInputMode="adjustPan" />
-        <!--excludeFromRecents 防止service调用后出现多个应用-->
     </application>
 
 </manifest>
