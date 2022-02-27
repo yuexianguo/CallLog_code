@@ -6,7 +6,7 @@ import java.util.*
 object DialTimeUtils {
 
     fun getCurrentTimeByFormat(): String {
-        val simpleDateFormat = SimpleDateFormat("MM-dd HH:mm:ss", Locale.getDefault())
+        val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
         return simpleDateFormat.format(Date())
     }
 

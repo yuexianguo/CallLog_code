@@ -1,9 +1,12 @@
 package com.phone.base.activity
 
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.KeyEvent
+import android.view.View
 import android.view.WindowManager
 import com.derry.serialportlibrary.T
 import com.phone.base.R
@@ -11,6 +14,7 @@ import com.phone.base.common.BaseActivity
 import com.phone.base.common.utils.LogUtil
 import com.phone.base.fragment.IncomingCallFragment
 import com.phone.base.fragment.TAG_INCOMING_CALL_FRAGMENT
+import kotlinx.android.synthetic.main.activity_dialing_container.*
 
 
 class IncomingCallActivity : BaseActivity() {
@@ -45,19 +49,15 @@ class IncomingCallActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        if (savedInstanceState == null) {
-            LogUtil.d(T.TAG, "onCreate")
-            window.addFlags(
-                WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON //保持屏幕常亮
-                        or WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED //在锁屏情况下也可以显示屏幕
-                        or WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON
-            ) //启动Activity的时候点亮屏幕
-            startTarget()
+        LogUtil.d(T.TAG, "onCreate")
+        window.addFlags(
+            WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON //保持屏幕常亮
+                    or WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED //在锁屏情况下也可以显示屏幕
+                    or WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON
+        ) //启动Activity的时候点亮屏幕
+        startTarget()
 //        }
-    }
 
-    override fun onNewIntent(intent: Intent?) {
-        super.onNewIntent(intent)
-        LogUtil.d(T.TAG, "onNewIntent")
     }
 
     private fun showDialingPage(phoneNum: String) {

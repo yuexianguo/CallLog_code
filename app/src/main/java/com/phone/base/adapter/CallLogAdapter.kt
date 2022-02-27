@@ -2,22 +2,30 @@ package com.phone.base.adapter
 
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import com.phone.base.R
-import com.phone.base.bean.PhoneBookInfo
-import com.phone.base.bean.PhoneBookItem
+import com.phone.base.bean.PhoneHistoryItem
 import com.phone.base.common.adapter.CustomBaseAdapter
+import com.phone.base.common.listener.OnSingleClickListener
 
-class CallLogAdapter(list: MutableList<PhoneBookItem>) :
-        CustomBaseAdapter<PhoneBookItem, CallLogAdapter.CallLogHolder>(R.layout.adapter_item_call_log, list) {
+class CallLogAdapter(list: MutableList<PhoneHistoryItem>) :
+    CustomBaseAdapter<PhoneHistoryItem, CallLogAdapter.CallLogHolder>(R.layout.adapter_item_call_log, list) {
 
     override fun onCreateCustomViewHolder(view: View): CallLogHolder {
         return CallLogHolder(view)
     }
 
-    override fun onBindCustomViewHolder(callLogHolder: CallLogHolder, phoneBookitem: PhoneBookItem) {
+    override fun onBindCustomViewHolder(callLogHolder: CallLogHolder, phoneHistoryItem: PhoneHistoryItem) {
         try {
-            callLogHolder.item_call_name.text = phoneBookitem.name
-            callLogHolder.item_call_phone_number.text = phoneBookitem.phone1
+            callLogHolder.item_call_name.text = phoneHistoryItem.name
+            callLogHolder.item_call_phone_number.text = phoneHistoryItem.phone
+            callLogHolder.item_call_start_time.text = if (phoneHistoryItem.startTime.length >= 18) phoneHistoryItem.startTime.substringAfter('-') else phoneHistoryItem.startTime
+            callLogHolder.item_call_start_time.setOnClickListener(object :OnSingleClickListener(){
+                override fun onSingleClick(v: View) {
+                    Toast.makeText(callLogHolder.itemView.context, phoneHistoryItem.startTime, Toast.LENGTH_SHORT).show()
+                }
+            })
+            callLogHolder.item_call_time_long.text = phoneHistoryItem.dialogTimeLength
         } catch (e: Exception) {
             e.printStackTrace()
         }

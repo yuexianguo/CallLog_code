@@ -4,21 +4,16 @@ import android.Manifest
 import android.content.*
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.view.*
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentTransaction
-import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.google.android.material.tabs.TabLayout
 import com.phone.base.R
 import com.phone.base.activity.MainActivity
-import com.phone.base.bean.PhoneBookItem
-import com.phone.base.common.BaseApplication
+import com.phone.base.bean.PhoneHistoryItem
 import com.phone.base.common.BaseFragment
 import com.phone.base.fragment.AllCallLogFragment
 import com.phone.base.fragment.TAG_ALL_CALL_FRAGMENT
 import com.phone.base.manager.PhoneInfoManager
-import com.phone.base.utils.PhoneFileUtils
 import kotlinx.android.synthetic.main.fragment_home.*
 
 const val TAG_HOME_FRAGMENT = "HomeFragment"
@@ -34,7 +29,7 @@ class HomeFragment : BaseFragment() {
     private var mDialedCallLogFragment: DialedCallLogFragment? = null
     private var mSeekLogFragment: SeekLogFragment? = null
     private var mCurrentIndex = 0
-    private var mPhoneList: ArrayList<PhoneBookItem> = arrayListOf()
+    private var mPhoneHistoryList: ArrayList<PhoneHistoryItem> = arrayListOf()
 
 
     companion object {
@@ -97,9 +92,9 @@ class HomeFragment : BaseFragment() {
             this.requestPermissions(arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE), REQUES_READ_WRITE_CODE)
         } else {
             PhoneInfoManager.instance.updatePhoneInfo()
-            mPhoneList.clear()
-            mPhoneList.addAll(PhoneInfoManager.instance.phoneInfo.phoneList)
-            mAllCallLogFragment?.setList(mPhoneList)
+            mPhoneHistoryList.clear()
+            mPhoneHistoryList.addAll(PhoneInfoManager.instance.phoneInfo.phoneHistoryItemList)
+            mAllCallLogFragment?.setList(mPhoneHistoryList)
         }
     }
 
@@ -109,9 +104,9 @@ class HomeFragment : BaseFragment() {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 context?.apply {
                     PhoneInfoManager.instance.updatePhoneInfo()
-                    mPhoneList.clear()
-                    mPhoneList.addAll(PhoneInfoManager.instance.phoneInfo.phoneList)
-                    mAllCallLogFragment?.setList(mPhoneList)
+                    mPhoneHistoryList.clear()
+                    mPhoneHistoryList.addAll(PhoneInfoManager.instance.phoneInfo.phoneHistoryItemList)
+                    mAllCallLogFragment?.setList(mPhoneHistoryList)
                 }
             } else {
                 showMsgDialog("请打开APP的存储权限。", null, { dialog, _ -> dialog.dismiss() }, null)
@@ -136,7 +131,7 @@ class HomeFragment : BaseFragment() {
         when (index) {
             0 -> {
                 if (mAllCallLogFragment == null) {
-                    mAllCallLogFragment = AllCallLogFragment.newInstance(mPhoneList)
+                    mAllCallLogFragment = AllCallLogFragment.newInstance(mPhoneHistoryList)
                     transaction.add(R.id.fl_home_container, mAllCallLogFragment!!, TAG_ALL_CALL_FRAGMENT)
                 }
                 transaction.show(mAllCallLogFragment!!)

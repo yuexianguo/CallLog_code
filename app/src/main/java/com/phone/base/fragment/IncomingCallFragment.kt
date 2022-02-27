@@ -2,10 +2,12 @@ package com.phone.base.fragment
 
 import android.app.Dialog
 import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.view.KeyEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
@@ -30,6 +32,7 @@ import com.phone.base.rxevent.HangUpCallEvent
 import com.phone.base.rxevent.IncomeCallEvent
 import com.phone.base.utils.DialTimeUtils
 import io.reactivex.disposables.Disposable
+import kotlinx.android.synthetic.main.activity_dialing_container.*
 import kotlinx.android.synthetic.main.fragment_incoming_call.*
 
 
@@ -130,6 +133,18 @@ class IncomingCallFragment : BaseDialogFragment() {
             }
         })
 
+        dialog.setOnKeyListener(object : DialogInterface.OnKeyListener {
+            override fun onKey(arg0: DialogInterface?, keyCode: Int, arg2: KeyEvent?): Boolean {
+                // TODO Auto-generated method stub
+                if (keyCode == KeyEvent.KEYCODE_BACK) {
+                    return true
+                } else if (keyCode == KeyEvent.KEYCODE_MENU) {
+                    return true
+                }
+                return false
+            }
+        })
+
         initData()
     }
 
@@ -149,7 +164,7 @@ class IncomingCallFragment : BaseDialogFragment() {
         mDisposableHangUpCallEvent = RxBus.toObservable(HangUpCallEvent::class.java).subscribe {
             LogUtil.d(T.TAG, "mDisposableCallEvent HangUpCallEvent context=$context, isAdded =$isAdded")
             if (context != null) {
-                mActivity?.onBackPressed()
+                dismissAllowingStateLoss()
             }
         }
     }

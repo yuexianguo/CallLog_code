@@ -1,9 +1,14 @@
 package com.phone.base.bean
 
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import android.os.Environment
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.google.gson.Gson
+import com.phone.base.MyApplication
+import com.phone.base.common.BaseApplication
+import com.phone.base.intent.IntentActions.INTENT_ACTION_CALL_LOG_CHANGED
 import com.phone.base.utils.FileSystem
 import com.phone.base.utils.PhoneFileUtils
 import com.phone.base.utils.PhoneFileUtils.FILE_NAME
@@ -17,6 +22,7 @@ const val TYPE_WOMAN = "女士"
 const val DIAL_TYPE_MISSED_CALL = "未接"
 const val DIAL_TYPE_RECEIVED_CALL = "已接"
 const val DIAL_TYPE_DIALED_CALL = "已拨"
+
 
 class PhoneBookInfo : Serializable {
     var phoneList: ArrayList<PhoneBookItem> = arrayListOf()
@@ -56,6 +62,7 @@ class PhoneBookInfo : Serializable {
 
     fun insertPhoneHistoryItem(phoneHistoryItem: PhoneHistoryItem) {
         phoneHistoryItemList.add(phoneHistoryItem)
+        LocalBroadcastManager.getInstance(BaseApplication.context).sendBroadcast(Intent(INTENT_ACTION_CALL_LOG_CHANGED))
     }
 
 
