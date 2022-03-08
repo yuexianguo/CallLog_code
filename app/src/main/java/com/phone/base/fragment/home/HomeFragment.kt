@@ -11,8 +11,6 @@ import com.phone.base.R
 import com.phone.base.activity.MainActivity
 import com.phone.base.bean.PhoneHistoryItem
 import com.phone.base.common.BaseFragment
-import com.phone.base.fragment.AllCallLogFragment
-import com.phone.base.fragment.TAG_ALL_CALL_FRAGMENT
 import com.phone.base.manager.PhoneInfoManager
 import kotlinx.android.synthetic.main.fragment_home.*
 
