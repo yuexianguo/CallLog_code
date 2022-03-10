@@ -3,6 +3,7 @@ package com.phone.base.fragment.home
 import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.phone.base.R
 import com.phone.base.activity.MainActivity
@@ -12,6 +13,7 @@ import com.phone.base.bean.DIAL_TYPE_RECEIVED_CALL
 import com.phone.base.bean.PhoneHistoryItem
 import com.phone.base.common.BaseFragment
 import com.phone.base.common.utils.LinearItemDivider
+import com.phone.base.jobservice.T
 import com.phone.base.manager.PhoneInfoManager
 import kotlinx.android.synthetic.main.fragment_call_log.*
 
@@ -44,6 +46,19 @@ class ReceivedCallLogFragment : BaseFragment() {
         recyclerview_call_log.addItemDecoration(LinearItemDivider(Color.GRAY))
         recyclerview_call_log.adapter = callLogAdapter
         updateData()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d(T.TAG,"receive call log onResume")
+    }
+
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+        Log.d(T.TAG,"receive call log onHiddenChanged hidden=$hidden")
+        if (!hidden) {
+            updateData()
+        }
     }
 
     private fun updateData() {

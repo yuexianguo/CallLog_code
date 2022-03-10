@@ -90,10 +90,10 @@ class AllCallLogFragment : BaseFragment() {
 
     override fun onHiddenChanged(hidden: Boolean) {
         super.onHiddenChanged(hidden)
-        Log.d(T.TAG,"onHiddenChanged hidden=$hidden")
-//        if (!hidden) {
-//            updateData()
-//        }
+        Log.d(T.TAG,"all call log onHiddenChanged hidden=$hidden")
+        if (!hidden) {
+            updateData()
+        }
     }
 
 
